@@ -1,21 +1,38 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {ListModel} from '../../../request-offer-list.model';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ListType} from '../../../request-offer-list.model';
+import HelpRequest from '../../../../../shared/model/help-request.model';
+import HelpOffer from '../../../../../shared/model/help-offer.model';
 
 @Component({
   selector: 'app-request-offer-list-content',
   template: `
       <div class="container p-0 mr-0">
-          <ul class="list-group list-group-flush" *ngIf="itemList.length > 0">
-              <li class="list-group-item" *ngFor="let item of itemList">
-                  <app-request-offer-list-item [item]="item" (action)="action.emit($event)"></app-request-offer-list-item>
-              </li>
-          </ul>
+          <div *ngIf="type===listItemTypes.offers; else requestsList">
+              <ul class="list-group list-group-flush" *ngIf="offers.length > 0">
+                  <li class="list-group-item" *ngFor="let offer of offers">
+                      <app-offer-list-item [item]="offer"></app-offer-list-item>
+                  </li>
+              </ul>
+          </div>
+          <ng-template #requestsList>
+              <ul class="list-group list-group-flush" *ngIf="requests.length > 0">
+                  <li class="list-group-item" *ngFor="let request of requests">
+                      <app-request-list-item [item]="request"></app-request-list-item>
+                  </li>
+              </ul>
+          </ng-template>
       </div>
   `,
   styleUrls: ['./request-offer-list-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RequestOfferListContentComponent {
-  @Input() itemList: ListModel[];
-  @Output() action: EventEmitter<number> = new EventEmitter<number>();
+  @Input() offers: HelpOffer[];
+  @Input() requests: HelpRequest[];
+  @Input() type: ListType;
+
+  listItemTypes = {
+    offers: ListType.OFFERS,
+    requests: ListType.REQUESTS
+  };
 }

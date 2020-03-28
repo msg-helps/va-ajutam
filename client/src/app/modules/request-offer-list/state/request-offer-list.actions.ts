@@ -1,5 +1,7 @@
-import {ListModel, ListType} from '../request-offer-list.model';
+import {ListType} from '../request-offer-list.model';
 import {Action} from '@ngrx/store';
+import HelpRequest from '../../../shared/model/help-request.model';
+import HelpOffer from '../../../shared/model/help-offer.model';
 
 export enum RequestOfferListActionTypes {
   LoadRequests = '[RequestOfferList] Load Requests',
@@ -18,7 +20,7 @@ export class LoadRequests implements Action {
 export class LoadRequestsSuccess implements Action {
   readonly type = RequestOfferListActionTypes.LoadRequestsSuccess;
 
-  constructor(public payload: ListModel[]) {
+  constructor(public payload: HelpRequest[]) {
   }
 }
 
@@ -29,7 +31,7 @@ export class LoadOffers implements Action {
 export class LoadOffersSuccess implements Action {
   readonly type = RequestOfferListActionTypes.LoadOffersSuccess;
 
-  constructor(public payload: ListModel[]) {
+  constructor(public payload: HelpOffer[]) {
   }
 }
 

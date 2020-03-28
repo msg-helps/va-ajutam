@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {SmartRequestOfferListComponent} from './components/smart/smart-request-offer-list/smart-request-offer-list.component';
-import {RequestOfferListItemComponent} from './components/presentational/request-offer-list-item/request-offer-list-item.component';
+import {OfferListItemComponent} from './components/presentational/offer-list-item/offer-list-item.component';
 import {RequestOfferListPageComponent} from './components/pages/request-offer-list-page/request-offer-list-page.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RequestOfferListHeaderComponent} from './components/presentational/request-offer-list-header/request-offer-list-header.component';
@@ -13,6 +13,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {requestOfferListReducer} from './state/request-offer-list.reducer';
 import {RequestOfferListEffects} from './state/request-offer-list.effects';
 import {SharedModule} from '../../shared/shared.module';
+import {RequestListItemComponent} from './components/presentational/request-list-item/request-list-item.component';
 
 @NgModule({
   imports: [
@@ -25,9 +26,10 @@ import {SharedModule} from '../../shared/shared.module';
   ],
   declarations: [
     SmartRequestOfferListComponent,
-    RequestOfferListItemComponent,
+    OfferListItemComponent,
     RequestOfferListPageComponent,
     RequestOfferListHeaderComponent,
+    RequestListItemComponent,
     RequestOfferListContentComponent
   ],
   exports: [

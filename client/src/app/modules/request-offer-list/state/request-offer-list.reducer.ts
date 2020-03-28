@@ -1,9 +1,12 @@
-import {ListModel, ListType} from '../request-offer-list.model';
+import {ListType} from '../request-offer-list.model';
 import {RequestOfferListActionTypes, RequestOfferListActionUnion} from './request-offer-list.actions';
 import State from '../../../shared/state/state';
+import HelpRequest from '../../../shared/model/help-request.model';
+import HelpOffer from '../../../shared/model/help-offer.model';
 
 export interface RequestOfferListState {
-  data: ListModel[];
+  requests: HelpRequest[];
+  offers: HelpOffer[];
   selectedListType: ListType;
   loading: boolean;
   error: boolean;
@@ -14,7 +17,8 @@ export interface StateWithRequestOfferList extends State {
 }
 
 export const initialState: RequestOfferListState = {
-  data: [],
+  offers: [],
+  requests: [],
   selectedListType: ListType.OFFERS,
   loading: false,
   error: false
@@ -25,28 +29,28 @@ export function requestOfferListReducer(state = initialState, action: RequestOff
     case RequestOfferListActionTypes.LoadOffers:
       return {
         ...state,
-        data: [],
+        offers: [],
         loading: true,
         error: false
       };
     case RequestOfferListActionTypes.LoadRequests:
       return {
         ...state,
-        data: [],
+        requests: [],
         loading: true,
         error: false
       };
     case RequestOfferListActionTypes.LoadOffersSuccess:
       return {
         ...state,
-        data: action.payload,
+        offers: action.payload,
         loading: false,
         error: false
       };
     case RequestOfferListActionTypes.LoadRequestsSuccess:
       return {
         ...state,
-        data: action.payload,
+        requests: action.payload,
         loading: false,
         error: false
       };
@@ -63,4 +67,5 @@ export function requestOfferListReducer(state = initialState, action: RequestOff
       };
   }
 }
+
 export const selectListState = (state: StateWithRequestOfferList) => state.requestOfferList;

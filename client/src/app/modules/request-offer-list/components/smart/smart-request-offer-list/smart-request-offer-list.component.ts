@@ -2,8 +2,10 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {selectListState, StateWithRequestOfferList,} from '../../../state/request-offer-list.reducer';
 import {Observable} from 'rxjs';
-import {ListModel, ListType} from '../../../request-offer-list.model';
+import {ListType} from '../../../request-offer-list.model';
 import {ChangeListType} from '../../../state/request-offer-list.actions';
+import HelpRequest from '../../../../../shared/model/help-request.model';
+import HelpOffer from '../../../../../shared/model/help-offer.model';
 
 @Component({
   selector: 'app-smart-request-offer-list',
@@ -12,8 +14,9 @@ import {ChangeListType} from '../../../state/request-offer-list.actions';
           <app-request-offer-list-header
                   [selectedListMenuType]="selectedListType$ | async"
                   (listTypeChange)="onListTypeChange($event)"></app-request-offer-list-header>
-          <app-request-offer-list-content [itemList]="selectedListItems$ | async"
-                                          (action)="onGoToDetails($event)"></app-request-offer-list-content>
+          <app-request-offer-list-content [offers]="offersListItem$ | async"
+                                          [requests]="requestsListItem$ | async"
+                                          [type]="selectedListType$ | async"></app-request-offer-list-content>
       </div>
       <div>
           <ng-template #loadingContainer>
@@ -28,7 +31,8 @@ export class SmartRequestOfferListComponent implements OnInit {
 
   selectedListType$: Observable<ListType>;
   isLoading$: Observable<boolean>;
-  selectedListItems$: Observable<ListModel[]>;
+  requestsListItem$: Observable<HelpRequest[]>;
+  offersListItem$: Observable<HelpOffer[]>;
 
   constructor(private store: Store<StateWithRequestOfferList>) {
   }
@@ -36,15 +40,12 @@ export class SmartRequestOfferListComponent implements OnInit {
   ngOnInit(): void {
     this.selectedListType$ = this.store.select(selectListState).pipe(select(state => state.selectedListType));
     this.selectedListType$.subscribe(console.log);
-    this.selectedListItems$ = this.store.select(selectListState).pipe(select(state => state.data));
+    this.requestsListItem$ = this.store.select(selectListState).pipe(select(state => state.requests));
+    this.offersListItem$ = this.store.select(selectListState).pipe(select(state => state.offers));
     this.isLoading$ = this.store.select(selectListState).pipe(select(state => state.loading));
   }
 
   onListTypeChange(type: ListType) {
     this.store.dispatch(new ChangeListType(type));
-  }
-
-  onGoToDetails(id: number) {
-
   }
 }
