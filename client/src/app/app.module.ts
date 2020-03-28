@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
+import { CreatepageComponent } from './create-page/createpage/createpage.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreatepageComponent
   ],
   imports: [
     BrowserModule,
