@@ -8,7 +8,7 @@ import {ListModel} from '../../../request-offer-list.model';
           <div class="row mr-0 ml-0" *ngIf="item">
               <div class="card w-100">
                   <div class="card-body">
-                      <h5 class="card-title">{{item.title}}</h5>
+                      <h5 class="card-title"><b>{{item.requestedBy.name}}</b>: {{item.title}}</h5>
                       <span class="badge badge-pill badge-secondary">{{item.creationDate.toLocaleString()}}</span>
                       <span class="badge badge-pill badge-danger ml-1">Volunteers: {{item.participantsCount}}
                           pers.</span>
