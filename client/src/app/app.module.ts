@@ -13,6 +13,7 @@ import {AppComponent} from './app.component';
 import {PetModule} from './modules/pet-example/pet.module';
 import {reducers} from './shared/state/state';
 import {RequestOfferListModule} from './modules/request-offer-list/request-offer-list.module';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,15 @@ import {RequestOfferListModule} from './modules/request-offer-list/request-offer
     BrowserAnimationsModule,
     AppRoutingModule,
     PetModule,
+    SharedModule,
+    RequestOfferListModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : [],
-    RequestOfferListModule
+    !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : [],
   ],
   providers: [],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,10 +5,23 @@ import {RequestOfferListPageComponent} from './components/pages/request-offer-li
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RequestOfferListHeaderComponent} from './components/presentational/request-offer-list-header/request-offer-list-header.component';
 import {RequestOfferListContentComponent} from './components/presentational/request-offer-list-content/request-offer-list-content.component';
+import {RequestOfferListRoutingModule} from './request-offer-list-routing.module';
+import {RequestOfferListService} from './request-offer-list.service';
+import {CommonModule} from '@angular/common';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {requestOfferListReducer} from './state/request-offer-list.reducer';
+import {RequestOfferListEffects} from './state/request-offer-list.effects';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   imports: [
-    NgbModule
+    NgbModule,
+    CommonModule,
+    RequestOfferListRoutingModule,
+    StoreModule.forFeature('requestOfferList', requestOfferListReducer),
+    EffectsModule.forFeature([RequestOfferListEffects]),
+    SharedModule
   ],
   declarations: [
     SmartRequestOfferListComponent,
@@ -20,7 +33,7 @@ import {RequestOfferListContentComponent} from './components/presentational/requ
   exports: [
     RequestOfferListPageComponent
   ],
-  providers: []
+  providers: [RequestOfferListService]
 })
 export class RequestOfferListModule {
 

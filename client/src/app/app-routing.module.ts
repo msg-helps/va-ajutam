@@ -6,6 +6,10 @@ const routes: Routes = [
     path: 'pets',
     loadChildren: './modules/pet-example/pet.module#PetModule'
   },
+  {
+    path: 'request-offer',
+    loadChildren: './modules/request-offer-list/request-offer-list.module#RequestOfferListModule'
+  }
 ];
 
 @NgModule({

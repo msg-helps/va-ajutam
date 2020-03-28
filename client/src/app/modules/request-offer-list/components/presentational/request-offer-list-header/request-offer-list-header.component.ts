@@ -8,12 +8,12 @@ import {ListType} from '../../../request-offer-list.model';
           <div class="row mr-0 ml-0 text-right">
               <div class="col">
                   <div ngbDropdown>
-                      <button class="btn btn-outline-primary list-dropdown" id="listTypeDropdown" ngbDropdownToggle>
-                          {{isOfferMenu ? listItemTypes.offers : listItemTypes.requests}}
+                      <button class="btn btn-outline-primary list-dropdown" id="listTypeDropdown" ngbDropdownToggle *ngIf="selectedListMenuType">
+                          {{selectedListMenuType}}
                       </button>
                       <div ngbDropdownMenu aria-labelledby="listTypeDropdown">
-                          <button ngbDropdownItem [disabled]="isOfferMenu">Show offers</button>
-                          <button ngbDropdownItem [disabled]="!isOfferMenu">Show requests</button>
+                          <button ngbDropdownItem [disabled]="selectedListMenuType===listItemTypes.offers" (click)="listTypeChange.emit(listItemTypes.offers)">Show offers</button>
+                          <button ngbDropdownItem [disabled]="selectedListMenuType!==listItemTypes.offers"  (click)="listTypeChange.emit(listItemTypes.requests)">Show requests</button>
                       </div>
                   </div>
               </div>
@@ -24,8 +24,8 @@ import {ListType} from '../../../request-offer-list.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RequestOfferListHeaderComponent {
-  @Input() isOfferMenu = false;
-  @Output() listTypeChane: EventEmitter<ListType> = new EventEmitter<ListType>();
+  @Input() selectedListMenuType: ListType;
+  @Output() listTypeChange: EventEmitter<ListType> = new EventEmitter<ListType>();
 
   listItemTypes = {
     offers: ListType.OFFERS,

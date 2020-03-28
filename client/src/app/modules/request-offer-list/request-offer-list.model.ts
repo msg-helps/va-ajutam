@@ -23,7 +23,7 @@ export interface ListModel {
   title: string;
   shortDescription: string;
   address: string;
-  originator: PersonIdentity;
+  requestedBy: PersonIdentity;
   status: RequestOfferStatus;
   participantsCount: number;
 }
