@@ -1,6 +1,7 @@
 <h2> User Data </h2>
-<div class="col-md-6 col-lg-6 well">
-    <form [formGroup]="formGroup">
+
+  <div class="col-md-6 col-lg-6 well">
+    <form [formGroup]="userGroup">
             <div class='form-group'>
                 <label for="name">Name</label>
                 <input 
@@ -14,12 +15,6 @@
                   [(ngModel)]="user.email"
                   type="email" class="form-control" id="email" 
                   formControlName="email">
-                  <div *ngIf="formGroup.get('email').errors">
-                    <div *ngIf="formGroup.get('email').errors.required" 
-                            class="alert alert-danger">
-                            Email is required!
-                    </div>
-                </div>
             </div>
             <div class='form-group'>
                 <label for="phone">Phone</label>
@@ -36,4 +31,4 @@
                   formControlName="address">
             </div>
     </form>
-</div>
+</div> 

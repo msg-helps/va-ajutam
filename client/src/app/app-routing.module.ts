@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import { UserProfilePageComponent } from './modules/user-profile-page/components/user-profile-page.component';
 
 const routes: Routes = [
   {
@@ -8,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: './modules/user-profile-page/user-profile-page.module#UserModule'
+    component: UserProfilePageComponent
   }
 ];
 
