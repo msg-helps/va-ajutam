@@ -13,7 +13,7 @@ import {ListModel} from '../../../request-offer-list.model';
                       <span class="badge badge-pill badge-danger ml-1">Volunteers: {{item.participantsCount}}
                           pers.</span>
                       <p class="card-text">{{item.shortDescription}}</p>
-                      <a href="#" class="btn btn-primary" (click)="action.emit(item.id)">Read more</a>
+                      <a class="btn btn-primary" (click)="action.emit(item.id)">Read more</a>
                   </div>
               </div>
           </div>
