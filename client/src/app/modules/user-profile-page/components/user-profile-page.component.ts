@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { UserService } from './user-profile-page.service'
+import { UserService } from '../user-profile-page.service';
+import UserProfile from '../user-profile.model';
+
 
 @Component({
   selector: 'app-user-profile-page',
@@ -9,7 +11,7 @@ import { UserService } from './user-profile-page.service'
 })
 export class UserProfilePageComponent implements OnInit {
 
-  @Input() user = {};
+  @Input() user: UserProfile;
   formGroup: FormGroup;
 
   constructor( private _formBuilder: FormBuilder,
