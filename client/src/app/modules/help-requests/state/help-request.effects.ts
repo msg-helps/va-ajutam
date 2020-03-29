@@ -41,7 +41,7 @@ export class HelpRequestEffects {
   public loadHelpRequestSuccess$ = this.actions$.pipe(
     ofType<LoadHelpRequestSuccess>(HelpRequestActionTypes.LoadHelpRequestSuccess),
     switchMap((action: LoadHelpRequestSuccess ) => this.service.getCoordsForAddress(action.payload.address)
-      .then(result => new ConvertHelpRequestAddressToCoordsSuccess(result))
+      .then(result => new ConvertHelpRequestAddressToCoordsSuccess({ coords: result }))
       .catch(() => new ConvertHelpRequestAddressToCoordsFailure())
     )
   );

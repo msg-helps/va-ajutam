@@ -59,7 +59,7 @@ export function helpRequestReducer(state = initialState, action: HelpRequestActi
         ...state,
         coords: {
           loading: false,
-          data: action.payload
+          data: action.payload.coords
         }
       };
     }
