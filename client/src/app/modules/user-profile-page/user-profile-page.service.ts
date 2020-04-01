@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
-import UserProfile from './user-profile.model';
+import User from '../../shared/model/user.model';
 
 @Injectable()
 export class UserService {
+  constructor(){ }
 
-    constructor(){ }
-
-    // Get User data - connect to svr
-    getUser(): UserProfile {
-        return { name: "Test Test", 
-                 email: "test@test.com",
-                 phone: "0757665889",
-                 address: "Test address 123, Cluj Napoca" };
+  // Get Mock User data
+  getMockUser(): User {
+    return { 
+      id: null,
+      firstName: "Firstname",
+      lastName: "Lastname",
+      isAdmin: false,
+      phone: "0757665889",
+      organization: "OrganizationX",
+      region: "Cluj" 
     }
+  }
+
+    // Get User data - connection to svr
+  getUser(): User {
+    return null;
+  };
 
 }
