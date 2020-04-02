@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user-profile-page.service';
 import User from '../../../shared/model/user.model';
+import { Observable } from 'rxjs';
 
 @Component({
   providers: [ UserService ],
@@ -25,7 +26,9 @@ export class UserProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this._userService.getMockUser();
+    this._userService.getMockUser().subscribe(
+      userResponse => this.user = userResponse
+    )
   }
 
 }
