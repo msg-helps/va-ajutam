@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
   {
@@ -9,8 +8,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LandingPageComponent,
-    pathMatch: "full"
+    pathMatch: 'full',
+    loadChildren: './modules/landing-page/landing-page.module#LandingPageModule'
   },
 ];
 

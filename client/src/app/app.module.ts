@@ -12,12 +12,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PetModule} from './modules/pet-example/pet.module';
 import {reducers} from './shared/state/state';
-import { LandingPageComponent } from './landing-page/landing-page.component';
+import {LandingPageModule} from './modules/landing-page/landing-page.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LandingPageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -26,11 +25,13 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     PetModule,
+    LandingPageModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
+    !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : [],
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
