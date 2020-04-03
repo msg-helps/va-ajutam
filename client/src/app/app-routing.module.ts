@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { UserProfilePageComponent } from './modules/user-profile-page/components/user-profile-page.component';
+//import { UserProfilePageComponent } from './modules/user-profile-page/components/user-profile-page.component';
+import { SmartUserProfilePageComponent } from './modules/user-profile-page/components/smart-user-profile-page/smart-user-profile-page.component';
 
 const routes: Routes = [
   {
@@ -9,7 +10,9 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    component: UserProfilePageComponent
+    //component: UserProfilePageComponent,
+    //component: SmartUserProfilePageComponent
+    loadChildren: () => import('./modules/user-profile-page/user-profile-page.module').then(module => module.UserModule)
   }
 ];
 

@@ -1,16 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserService } from '../user-profile-page.service';
 import User from '../../../shared/model/user.model';
-import { Observable } from 'rxjs';
 
 @Component({
-  providers: [ UserService ],
   selector: 'app-user-profile-page',
   templateUrl: 'user-profile-page.component.html',
   styleUrls: ['user-profile-page.component.scss']
 })
 export class UserProfilePageComponent implements OnInit {
+
+  @Input() user: User;
+  @Output() loadUser = new EventEmitter<void>();
 
   userGroup = new FormGroup({
     firstName: new FormControl(),
@@ -20,15 +20,14 @@ export class UserProfilePageComponent implements OnInit {
     region: new FormControl()
   })
 
-  @Input() user: User;
-
-  constructor( private _userService: UserService) {
-  }
-
   ngOnInit(): void {
-    this._userService.getMockUser().subscribe(
-      userResponse => this.user = userResponse
-    )
+
+    this.userGroup.get('firstName').setValue(this.user.firstName);
+    this.userGroup.get('lastName').setValue(this.user.lastName);
+    this.userGroup.get('phone').setValue(this.user.phone);
+    this.userGroup.get('organization').setValue(this.user.organization);
+    this.userGroup.get('region').setValue(this.user.region);
+
   }
 
 }

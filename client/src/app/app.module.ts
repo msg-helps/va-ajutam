@@ -12,17 +12,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PetModule} from './modules/pet-example/pet.module';
 import {reducers} from './shared/state/state';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { UserProfilePageComponent } from './modules/user-profile-page/components/user-profile-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserProfilePageComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     NgbModule,
     RouterModule,
     BrowserAnimationsModule,

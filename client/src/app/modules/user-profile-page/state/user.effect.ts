@@ -7,7 +7,7 @@ import { UserService } from '../user-profile-page.service';
 import { LoadUser, LoadUserSuccess, UserActionTypes, LoadUserFailure } from './user.action';
 
 @Injectable()
-export class PetEffects {
+export class UserEffects {
   public constructor(private actions$: Actions, private store: Store<State>, private userService: UserService) {}
 
   @Effect()

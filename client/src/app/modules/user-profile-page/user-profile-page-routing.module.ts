@@ -1,13 +1,13 @@
 import { NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserProfilePageComponent } from './components/user-profile-page.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SmartUserProfilePageComponent } from './components/smart-user-profile-page/smart-user-profile-page.component';
 
 export const userProfileRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: UserProfilePageComponent
+    component: SmartUserProfilePageComponent
   },
 ];
 
