@@ -3,17 +3,24 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {InfoCardTextComponent} from './components/info-card/info-card-text/info-card-text.component';
 import {InfoCardComponent} from './components/info-card/info-card.component';
+import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
+import { NavbarComponent } from './components/navbar/navbar-component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [InfoCardComponent, InfoCardTextComponent],
+  declarations: [InfoCardComponent, InfoCardTextComponent, LoadingSpinnerComponent, NavbarComponent],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   exports: [
     CommonModule,
     InfoCardComponent,
-    InfoCardTextComponent
+    InfoCardTextComponent,
+    LoadingSpinnerComponent,
+    NavbarComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}
