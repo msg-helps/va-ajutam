@@ -12,6 +12,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PetModule} from './modules/pet-example/pet.module';
 import {reducers} from './shared/state/state';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,14 @@ import {reducers} from './shared/state/state';
     BrowserAnimationsModule,
     AppRoutingModule,
     PetModule,
+    SharedModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
+    !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
   ],
   providers: [],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
