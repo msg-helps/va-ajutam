@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
+import {SharedModule} from '../../shared/shared.module';
 import {LandingPageComponent} from './components/page/landing-page.component';
 import {AppStatsComponent} from './components/presentational/landing-page/landing-page.component';
 import {SmartLandingPageComponent} from './components/smart/smart-landing-page/smart-landing-page.component';
@@ -17,7 +17,7 @@ import {appStatsReducer} from './state/landing-page.reducer';
     AppStatsComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     StoreModule.forFeature('appStats', appStatsReducer),
     EffectsModule.forFeature([AppStatsEffects]),
     LandingPageRoutingModule,

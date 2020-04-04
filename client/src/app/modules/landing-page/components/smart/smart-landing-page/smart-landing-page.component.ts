@@ -10,7 +10,7 @@ import {selectAppStatsState, StateWithAppStats} from '../../../state/landing-pag
   template: `
     <app-landing-page-details
       [appStats]="appStats$ | async"
-      (loadStats)="loadAnotherAppStats()"
+      (loadStats)="reloadAppStats()"
     ></app-landing-page-details>
 
     <br>
@@ -32,7 +32,7 @@ export class SmartLandingPageComponent implements OnInit {
     this.isLoading$ = this.store.select(selectAppStatsState).pipe(select(appStatsState => appStatsState.loading));
   }
 
-  loadAnotherAppStats() {
+  reloadAppStats() {
     this.store.dispatch(new LoadAppStats());
   }
 

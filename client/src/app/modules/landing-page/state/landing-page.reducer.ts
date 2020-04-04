@@ -14,12 +14,18 @@ export interface StateWithAppStats extends State {
 
 export const initialState: AppStatsState = {
   data: {
-    confirmati: '1832',
-    vindecati: '321',
-    carantina: '44232',
-    izolare: '213000',
-    call112: '120000',
-    telverde: '300000'
+    confirmed: 1832,
+    cured: 321,
+    quarantined: 44232,
+    isolated: 213000,
+    deaths: 103,
+    tests: 15234,
+    call112: 120000,
+    telVerde: 300000,
+    newUsers: 123,
+    newRequests: 650,
+    nearbySearch: 10000,
+    completedRequests: 200
   },
   loading: false,
   error: false
@@ -53,12 +59,18 @@ export function appStatsReducer(state = initialState, action: AppStatsActionUnio
         loading: false,
         error: true,
         data: {
-          confirmati: '',
-          vindecati: '',
-          carantina: '',
-          izolare: '',
-          call112: '',
-          telverde: ''
+          confirmed: 0,
+          cured: 0,
+          quarantined: 0,
+          isolated: 0,
+          deaths: 0,
+          tests: 0,
+          call112: 0,
+          telVerde: 0,
+          newUsers: 0,
+          newRequests: 0,
+          nearbySearch: 0,
+          completedRequests: 0
         }
       };
     }
@@ -67,4 +79,5 @@ export function appStatsReducer(state = initialState, action: AppStatsActionUnio
     }
   }
 }
+
 export const selectAppStatsState = (state: StateWithAppStats) => state.appStats;

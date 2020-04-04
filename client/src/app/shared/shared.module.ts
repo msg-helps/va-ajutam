@@ -4,7 +4,6 @@ import {NgModule} from '@angular/core';
 import {InfoCardTextComponent} from './components/info-card/info-card-text/info-card-text.component';
 import {InfoCardComponent} from './components/info-card/info-card.component';
 
-
 @NgModule({
   declarations: [InfoCardComponent, InfoCardTextComponent],
   imports: [
@@ -12,6 +11,7 @@ import {InfoCardComponent} from './components/info-card/info-card.component';
     HttpClientModule
   ],
   exports: [
+    CommonModule,
     InfoCardComponent,
     InfoCardTextComponent
   ]

@@ -1,8 +1,14 @@
 export default interface AppStats {
-  confirmati: string;
-  vindecati: string;
-  carantina: string;
-  izolare: string;
-  call112: string;
-  telverde: string;
+  confirmed: number;
+  cured: number;
+  quarantined: number;
+  isolated: number;
+  deaths: number;
+  tests: number;
+  call112: number;
+  telVerde: number;
+  newUsers: number;
+  newRequests: number;
+  nearbySearch: number;
+  completedRequests: number;
 }
