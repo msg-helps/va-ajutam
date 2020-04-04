@@ -15,7 +15,7 @@ import {selectAppStatsState, StateWithAppStats} from '../../../state/landing-pag
 
     <br>
     <span *ngIf="isLoading$ | async" class="alert alert-info mt-5">Loading stats...</span>
-    <span *ngIf="hasError$ | async" class="alert alert-danger mt-5">Could not load stats :(</span>
+    <span *ngIf="hasError$ | async" class="alert alert-danger mt-5">Could not load stats</span>
   `,
   styleUrls: ['./smart-landing-page.component.scss']
 })

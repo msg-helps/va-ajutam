@@ -11,13 +11,13 @@ import AppStats from '../../../landing-page.model';
         <div class="column">
           <div id="confirmati" class="card card-small">
             <span>Confirmati:
-                  {{ appStats?.confirmati }}</span>
+              {{ appStats.confirmati }}</span>
           </div>
         </div>
         <div class="column">
           <div id="vindecati" class="card card-small">
             <span>Vindecati:
-                  {{ appStats?.vindecati }}</span>
+              {{ appStats.vindecati }}</span>
           </div>
         </div>
       </div>
@@ -25,13 +25,13 @@ import AppStats from '../../../landing-page.model';
         <div class="column">
           <div id="carantina" class="card card-small">
             <span>Carantina:
-                {{ appStats?.carantina }}</span>
+              {{ appStats.carantina }}</span>
           </div>
         </div>
         <div class="column">
           <div id="izolare" class="card card-small">
             <span>Izolare:
-                {{ appStats?.izolare }}</span>
+              {{ appStats.izolare }}</span>
           </div>
         </div>
       </div>
@@ -39,24 +39,20 @@ import AppStats from '../../../landing-page.model';
         <div class="column">
           <div id="apeluri112" class="card card-small">
             <span>Apeluri 112:
-                {{ appStats?.call112 }}</span>
+              {{ appStats.call112 }}</span>
           </div>
         </div>
         <div class="column">
           <div id="telverde" class="card card-small">
             <span>Telverde:
-                {{ appStats?.telverde }}</span>
+              {{ appStats.telverde }}</span>
           </div>
         </div>
       </div>
       <!-- Footer -->
       <footer>
-        <button class="btn btn-primary">
-          Cereri/Donatii
-        </button>
-        <button class="btn btn-primary">
-          Ofera/cere ajutor
-        </button>
+        <button class="btn btn-primary">Cereri/Donatii</button>
+        <button class="btn btn-primary">Ofera/cere ajutor</button>
         <button class="btn btn-primary" (click)="loadStats.emit()">Profilul meu</button>
       </footer>
     </div>
