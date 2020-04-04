@@ -1,10 +1,10 @@
-import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import * as Consts from './consts';
-import RequestVsOffer from './model';
-import { ActivatedRoute, Router } from '@angular/router';
-import BaseHelp from '../shared/model/help.model';
+import { OnInit, Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import BaseHelp from 'src/app/shared/model/help.model';
+import RequestVsOffer from 'src/app/create-page/model';
+import { Router } from '@angular/router';
+import * as Consts from '../../../../shared/consts';
+
 
 @Component({
   selector: 'app-createpage',

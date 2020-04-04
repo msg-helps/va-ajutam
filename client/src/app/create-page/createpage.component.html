@@ -2,7 +2,7 @@
   <form class="form-horizontal" [formGroup]="addForm" (ngSubmit)="onSaveClick()">
     <fieldset>
       <div class="form-group">
-        <label class="col-md-3 control-label" for="title">{{title}}</label>
+        <label class="col-md-3 control-label" for="title">{{helpModel.title}}</label>
         <div class="col-md-9">
           <textarea formControlName="title" placeholder="Detalii despre ce oferi" id="title" type="text" class="form-control input-md"></textarea>
           <span class="help-block" *ngIf="!addForm.get('title').valid && addForm.get('title').touched">
@@ -12,7 +12,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-3 control-label" for="details">{{details}}</label>
+        <label class="col-md-3 control-label" for="details">{{helpModel.description}}</label>
         <div class="col-md-9">
           <input formControlName="name" placeholder="Florentina Dragu"  id="name" type="text" class="form-control input-md">
           <span class="help-block" *ngIf="!addForm.get('name').valid && addForm.get('name').touched">
@@ -30,7 +30,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-3 control-label" for="address">{{address}}</label>
+        <label class="col-md-3 control-label" for="address">{{helpModel.address}}</label>
         <div class="col-md-9">
           <textarea formControlName="address" placeholder="Adresa de unde se poate ridicat" id="address" type="text" class="form-control input-md"></textarea>
           <span class="help-block" *ngIf="!addForm.get('address').valid && addForm.get('address').touched">
