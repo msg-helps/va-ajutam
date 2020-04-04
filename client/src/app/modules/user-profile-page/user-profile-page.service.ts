@@ -5,28 +5,45 @@ import { delay } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
+  
   constructor(){ }
 
-  // Get Mock User data
-  getMockUser(): Observable<User> {
-
+  // Get User data - connection to svr
+  getUser(): Observable<User> {
     const users: User[] = [
-        { 
-            id: null,
-            firstName: "Firstname",
-            lastName: "Lastname",
-            isAdmin: false,
-            phone: "0757665889",
-            organization: "OrganizationX",
-            region: "Cluj" 
-          }];
-  
-      return of(users[0]).pipe(delay(500));
-  }
+      {
+        id: null,
+        firstName: "Firstname",
+        lastName: "Lastname",
+        isAdmin: false,
+        phone: "0757665889",
+        organization: "OrganizationX",
+        region: "Cluj" 
+      },{ 
+        id: null,
+        firstName: "Firstname1",
+        lastName: "Lastname1",
+        isAdmin: false,
+        phone: "0757665889",
+        organization: "OrganizationX",
+        region: "Cluj" 
+      },{ 
+        id: null,
+        firstName: "Firstname2",
+        lastName: "Lastname2",
+        isAdmin: false,
+        phone: "0757665889",
+        organization: "OrganizationX",
+        region: "Cluj" 
+      }];
 
-    // Get User data - connection to svr
-  getUser(): User {
-    return null;
+      
+    const random = Math.floor(Math.random() * (users.length + 1));
+    if (random === users.length) {
+      throw new Error();
+    }
+
+    return of(users[random]).pipe(delay(200));
   };
 
 }

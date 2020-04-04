@@ -1,5 +1,11 @@
-<h2> User Data </h2>
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import User from '../../../../shared/model/user.model';
 
+@Component({
+  selector: 'app-user-profile-page',
+  template: `
+  <h2> Profile </h2>
   <div class="col-md-6 col-lg-6 well">
     <form [formGroup]="userGroup">
             <div class='form-group'>
@@ -34,4 +40,15 @@
           </div>
     </form>
     <button class="btn btn-primary" (click)="loadUser.emit()">Load User</button>
-</div> 
+</div>`,
+  styleUrls: ['user-profile-page.component.scss']
+})
+export class UserProfilePageComponent implements OnInit {
+
+  @Input() userGroup: FormGroup;
+  @Output() loadUser = new EventEmitter<void>();
+
+  ngOnInit(): void {
+  }
+
+}

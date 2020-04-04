@@ -15,7 +15,7 @@ import {reducers} from './shared/state/state';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

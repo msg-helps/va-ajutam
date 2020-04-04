@@ -13,7 +13,7 @@ export class UserEffects {
   @Effect()
   public loadUser$ = this.actions$.pipe(
     ofType<LoadUser>(UserActionTypes.LoadUser),
-    switchMap(() => this.userService.getMockUser()),
+    switchMap(() => this.userService.getUser()),
     map( user => new LoadUserSuccess(user)),
     catchError(() => [new LoadUserFailure()])
   );

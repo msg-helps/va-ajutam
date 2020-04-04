@@ -16,11 +16,11 @@ export const initialState: UserState = {
   data: {
       id: '',
       isAdmin: false,
-      firstName: 'TestFirstname',
-      lastName: 'TestLastname',
-      organization: 'TestOrga',
-      phone: 'noPhone',
-      region: 'noRegion'
+      firstName: '',
+      lastName: '',
+      organization: '',
+      phone: '',
+      region: ''
   },
   loading: false,
   error: false
