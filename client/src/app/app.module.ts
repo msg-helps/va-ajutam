@@ -28,10 +28,9 @@ import {LandingPageModule} from './modules/landing-page/landing-page.module';
     LandingPageModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : [],
+    !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

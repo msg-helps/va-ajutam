@@ -11,6 +11,7 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: './modules/landing-page/landing-page.module#LandingPageModule'
   },
+  { path: 'help-requests', loadChildren: () => import('./modules/help-requests/help-requests.module').then(m => m.HelpRequestsModule) },
 ];
 
 @NgModule({
