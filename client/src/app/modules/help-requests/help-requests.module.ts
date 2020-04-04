@@ -6,17 +6,31 @@ import {StoreModule} from '@ngrx/store';
 import {environment} from '../../../environments/environment';
 import {SharedModule} from '../../shared/shared.module';
 import {HelpRequestDetailPageComponent} from './components/page/help-request-detail-page/help-request-detail-page.component';
-import {HelpRequestListPageComponent} from './components/page/help-request-list/help-request-list-page.component';
 import {HelpRequestDetailComponent} from './components/presentational/help-request-detail/help-request-detail.component';
 import {SmartHelpRequestDetailComponent} from './components/smart/smart-help-request-detail/smart-help-request-detail.component';
-
 import {HelpRequestsRoutingModule} from './help-requests-routing.module';
 import {HelpRequestEffects} from './state/help-request.effects';
 import {helpRequestReducer} from './state/help-request.reducer';
+import {SmartRequestOfferListComponent} from './components/smart/smart-request-offer-list/smart-request-offer-list.component';
+import {OfferListItemComponent} from './components/presentational/offer-list-item/offer-list-item.component';
+import {RequestOfferListPageComponent} from './components/page/request-offer-list-page/request-offer-list-page.component';
+import {RequestOfferListHeaderComponent} from './components/presentational/request-offer-list-header/request-offer-list-header.component';
+import {RequestListItemComponent} from './components/presentational/request-list-item/request-list-item.component';
+import {RequestOfferListContentComponent} from './components/presentational/request-offer-list-content/request-offer-list-content.component';
+import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
-  declarations: [HelpRequestListPageComponent, HelpRequestDetailPageComponent, SmartHelpRequestDetailComponent, HelpRequestDetailComponent],
+  declarations: [
+    HelpRequestDetailPageComponent,
+    SmartHelpRequestDetailComponent,
+    HelpRequestDetailComponent,
+    SmartRequestOfferListComponent,
+    OfferListItemComponent,
+    RequestOfferListPageComponent,
+    RequestOfferListHeaderComponent,
+    RequestListItemComponent,
+    RequestOfferListContentComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -25,8 +39,10 @@ import {helpRequestReducer} from './state/help-request.reducer';
     EffectsModule.forFeature([HelpRequestEffects]),
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey
-    })
+    }),
+    NgbDropdownModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class HelpRequestsModule { }
+export class HelpRequestsModule {
+}

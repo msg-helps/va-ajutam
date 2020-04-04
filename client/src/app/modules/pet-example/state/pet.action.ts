@@ -1,4 +1,5 @@
 import Pet from '../pet.model';
+import {Action} from '@ngrx/store';
 
 export enum PetActionTypes {
   LoadPet = '[Pet] Load',
@@ -7,17 +8,18 @@ export enum PetActionTypes {
   ResetPet = '[Pet] Reset'
 }
 
-export class LoadPet {
+export class LoadPet implements Action {
   readonly type = PetActionTypes.LoadPet;
 }
 
-export class LoadPetSuccess {
+export class LoadPetSuccess implements Action {
   readonly type = PetActionTypes.LoadPetSuccess;
 
-  constructor(public payload: Pet) {}
+  constructor(public payload: Pet) {
+  }
 }
 
-export class LoadPetFailure {
+export class LoadPetFailure implements Action {
   readonly type = PetActionTypes.LoadPetFailure;
 }
 
