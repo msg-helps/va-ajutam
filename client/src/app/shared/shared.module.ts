@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {InfoCardTextComponent} from './components/info-card/info-card-text/info-card-text.component';
 import {InfoCardComponent} from './components/info-card/info-card.component';
 import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
+import {UserService} from './user/user-profile-page.service';
 
 
 @NgModule({
@@ -11,6 +12,9 @@ import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spin
   imports: [
     CommonModule,
     HttpClientModule
+  ],
+  providers: [
+    UserService
   ],
   exports: [
     InfoCardComponent,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import State from '../../../shared/state/state';
+import State from '../../state/state';
 import { UserService } from '../user-profile-page.service';
 import { LoadUser, LoadUserSuccess, UserActionTypes, LoadUserFailure } from './user.action';
 
