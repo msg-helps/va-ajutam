@@ -1,21 +1,22 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import HelpRequest from '../../../../../shared/model/help-request.model';
 
 @Component({
   selector: 'app-help-request-detail',
   template: `
       <app-info-card title="CE ESTE SOLICITAT">
-        <app-info-card-text muted="true" >{{ helpRequest.description }}</app-info-card-text>
+        <app-info-card-text muted="true">{{ helpRequest.description }}</app-info-card-text>
       </app-info-card>
 
       <app-info-card title="CINE SOLICITA AJUTOR">
-        <app-info-card-text muted="true" >{{ helpRequest.requestedFor }}</app-info-card-text>
+        <app-info-card-text muted="true">{{ helpRequest.requestedFor }}</app-info-card-text>
         <div class="row mt-3">
           <div class="col-6">
-            <app-info-card-text muted="true" >{{ helpRequest.contactPerson }}</app-info-card-text>
+            <app-info-card-text muted="true">{{ helpRequest.contactPerson }}</app-info-card-text>
           </div>
           <div class="col-6 text-right">
-            <app-info-card-text><a [href]="'tel:' + helpRequest.contactPhone">{{ helpRequest.contactPhone }}</a></app-info-card-text>
+            <app-info-card-text><a
+                      [href]="'tel:' + helpRequest.contactPhone">{{ helpRequest.contactPhone }}</a></app-info-card-text>
           </div>
         </div>
       </app-info-card>

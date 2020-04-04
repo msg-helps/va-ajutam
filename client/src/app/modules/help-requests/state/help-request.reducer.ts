@@ -1,9 +1,15 @@
 import HelpRequest from '../../../shared/model/help-request.model';
 import State from '../../../shared/state/state';
 import {HelpRequestActionTypes, HelpRequestActionUnion} from './help-request.action';
+import HelpOffer from '../../../shared/model/help-offer.model';
+import {ListType} from '../help-requests.model';
 
 export interface HelpRequestState {
   data: HelpRequest;
+  requests: HelpRequest[];
+  offers: HelpOffer[];
+  selectedListType: ListType;
+  error: boolean;
   loading: boolean;
   coords: {
     loading: boolean;
@@ -16,8 +22,12 @@ export interface StateWithHelpRequest extends State {
 }
 
 export const initialState: HelpRequestState = {
+  offers: [],
+  requests: [],
+  selectedListType: ListType.OFFERS,
   data: null,
   loading: true,
+  error: false,
   coords: {
     loading: true,
     data: null
@@ -72,9 +82,49 @@ export function helpRequestReducer(state = initialState, action: HelpRequestActi
         }
       };
     }
+    case HelpRequestActionTypes.LoadOffers:
+      return {
+        ...state,
+        offers: [],
+        loading: true,
+        error: false
+      };
+    case HelpRequestActionTypes.LoadRequests:
+      return {
+        ...state,
+        requests: [],
+        loading: true,
+        error: false
+      };
+    case HelpRequestActionTypes.LoadOffersSuccess:
+      return {
+        ...state,
+        offers: action.payload,
+        loading: false,
+        error: false
+      };
+    case HelpRequestActionTypes.LoadRequestsSuccess:
+      return {
+        ...state,
+        requests: action.payload,
+        loading: false,
+        error: false
+      };
+    case HelpRequestActionTypes.LoadRequestOfferFailure:
+      return {
+        ...state,
+        loading: false,
+        error: true
+      };
+    case HelpRequestActionTypes.ChangeListType:
+      return {
+        ...state,
+        selectedListType: action.payload
+      };
     default: {
       return state;
     }
   }
 }
+
 export const selectHelpRequestState = (state: StateWithHelpRequest) => state.helpRequest;
