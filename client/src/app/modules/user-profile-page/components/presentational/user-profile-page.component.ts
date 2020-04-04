@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import User from '../../../../shared/model/user.model';
+import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -39,16 +38,11 @@ import User from '../../../../shared/model/user.model';
                 formControlName="region">
           </div>
     </form>
-    <button class="btn btn-primary" (click)="loadUser.emit()">Load User</button>
 </div>`,
   styleUrls: ['user-profile-page.component.scss']
 })
-export class UserProfilePageComponent implements OnInit {
+export class UserProfilePageComponent{
 
   @Input() userGroup: FormGroup;
-  @Output() loadUser = new EventEmitter<void>();
-
-  ngOnInit(): void {
-  }
 
 }

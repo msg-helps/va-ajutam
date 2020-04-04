@@ -10,8 +10,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   selector: 'smart-user-profile-page',
   template: `
     <app-user-profile-page
-      [userGroup]="userGroup"
-      (loadUser)="loadAnotherUser()"></app-user-profile-page>
+      [userGroup]="userGroup"></app-user-profile-page>
     <br>
     <span *ngIf="isLoading$ | async" class="alert alert-info mt-5">Loading user...</span>
     <span *ngIf="hasError$ | async" class="alert alert-danger mt-5">Could not load user...</span>`,
@@ -33,6 +32,7 @@ export class SmartUserProfilePageComponent implements OnInit {
   constructor(private store: Store<StateWithUser>) { }
 
   ngOnInit(): void {
+
     this.user$ = this.store.select(selectUserState).pipe(select(userState => userState.data));
     this.hasError$ = this.store.select(selectUserState).pipe(select(userState => userState.error));
     this.isLoading$ = this.store.select(selectUserState).pipe(select(userState => userState.loading));
