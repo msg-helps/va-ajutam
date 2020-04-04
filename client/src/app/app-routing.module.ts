@@ -16,14 +16,15 @@ const routes: Routes = [
     path: 'request',
     component: CreatepageComponent
   },
+  {
+    path: 'pets',
+    loadChildren: './modules/pet-example/pet.module#PetModule'
+  }
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(
-    routes,
-    { enableTracing: false } // <-- debugging purposes only
-  )],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
