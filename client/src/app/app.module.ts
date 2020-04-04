@@ -26,7 +26,7 @@ import {reducers} from './shared/state/state';
     PetModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
+    !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
   ],
   providers: [],
   bootstrap: [AppComponent]
