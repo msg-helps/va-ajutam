@@ -12,6 +12,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PetModule} from './modules/pet-example/pet.module';
 import {reducers} from './shared/state/state';
+import {LoginModule} from './modules/login/login.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {reducers} from './shared/state/state';
     BrowserAnimationsModule,
     AppRoutingModule,
     PetModule,
+    LoginModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []
