@@ -27,10 +27,9 @@ import {SharedModule} from './shared/shared.module';
     AppRoutingModule,
     PetModule,
     SharedModule,
-    RequestOfferListModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : [],
+    !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
   ],
   providers: [],
   exports: [
