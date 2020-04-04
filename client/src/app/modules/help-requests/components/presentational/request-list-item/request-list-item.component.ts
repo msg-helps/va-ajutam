@@ -13,6 +13,7 @@ import HelpRequest from '../../../../../shared/model/help-request.model';
                       <span class="badge badge-pill badge-secondary">{{item.contactPhone.toLocaleString()}}</span>
                       <span class="badge badge-pill badge-danger ml-1">Volunteers: {{item.volunteers.length}}
                           pers.</span>
+                      <span class="badge badge-pill badge-success ml-1">Status: {{item.status}}</span>
                       <p class="card-text">{{item.description}}</p>
                       <a class="btn btn-primary" routerLink="./{{item.id}}">Read more</a>
                   </div>

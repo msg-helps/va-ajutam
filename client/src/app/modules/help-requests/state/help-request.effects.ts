@@ -12,9 +12,18 @@ import {
   HelpRequestActionTypes,
   LoadHelpRequest,
   LoadHelpRequestFailure,
-  LoadHelpRequestSuccess, LoadOffers, LoadOffersSuccess, LoadRequestOfferFailure, LoadRequests, LoadRequestsSuccess
+  LoadHelpRequestSuccess,
+  LoadOffers,
+  LoadOffersSuccess,
+  LoadRequestOfferFailure,
+  LoadRequests,
+  LoadRequestsSuccess,
+  MarkHelpRequestAsDone,
+  MarkHelpRequestAsDoneFailure,
+  MarkHelpRequestAsDoneSuccess
 } from './help-request.action';
 import {ListType} from '../help-requests.model';
+import {of} from 'rxjs';
 
 @Injectable()
 export class HelpRequestEffects {
@@ -29,7 +38,8 @@ export class HelpRequestEffects {
   @Effect()
   public loadHelpRequest$ = this.actions$.pipe(
     ofType<LoadHelpRequest>(HelpRequestActionTypes.LoadHelpRequest),
-    switchMap(() => this.service.loadHelpRequest()
+    map(action => action.payload),
+    switchMap(id => this.service.loadHelpRequest(id)
       .then(result => new LoadHelpRequestSuccess(result))
       .catch(() => new LoadHelpRequestFailure()))
   );
@@ -76,5 +86,21 @@ export class HelpRequestEffects {
     ofType<ChangeListType>(HelpRequestActionTypes.ChangeListType),
     map(action => action.payload),
     map(listType => listType === ListType.OFFERS ? new LoadOffers() : new LoadRequests())
+  );
+
+  @Effect()
+  public markHelpRequestAsDone$ = this.actions$.pipe(
+    ofType<MarkHelpRequestAsDone>(HelpRequestActionTypes.MarkHelpRequestAsDone),
+    map(action => action.payload),
+    switchMap(id => this.service.markHelpRequestAsDone(id).pipe(
+      map(() => new MarkHelpRequestAsDoneSuccess()),
+      catchError(() => of(new MarkHelpRequestAsDoneFailure()))
+    ))
+  );
+
+  @Effect({dispatch: false})
+  public markHelpRequestAsDoneSuccess$ = this.actions$.pipe(
+    ofType<MarkHelpRequestAsDoneSuccess>(HelpRequestActionTypes.MarkHelpRequestAsDoneSuccess),
+    tap(() => this.router.navigateByUrl('/help-requests'))
   );
 }

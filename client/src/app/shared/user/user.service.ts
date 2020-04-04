@@ -13,7 +13,7 @@ export class UserService {
   getUser(): Observable<User> {
     const users: User[] = [
       {
-        id: null,
+        id: 'some-uuid-3',
         firstName: 'Firstname',
         lastName: 'Lastname',
         isAdmin: false,
@@ -21,7 +21,7 @@ export class UserService {
         organization: 'OrganizationX',
         region: 'Cluj'
       }, {
-        id: null,
+        id: 'some-uuid-2',
         firstName: 'Firstname1',
         lastName: 'Lastname1',
         isAdmin: false,
@@ -29,7 +29,7 @@ export class UserService {
         organization: 'OrganizationX',
         region: 'Cluj'
       }, {
-        id: null,
+        id: 'some-uuid-1',
         firstName: 'Firstname2',
         lastName: 'Lastname2',
         isAdmin: false,
@@ -39,10 +39,7 @@ export class UserService {
       }];
 
 
-    const random = Math.floor(Math.random() * (users.length + 1));
-    if (random === users.length) {
-      throw new Error();
-    }
+    const random = 0;
 
     return of(users[random]).pipe(delay(200));
   }
