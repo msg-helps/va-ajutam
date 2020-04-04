@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {ListType} from '../../../request-offer-list.model';
 import HelpRequest from '../../../../../shared/model/help-request.model';
 import HelpOffer from '../../../../../shared/model/help-offer.model';
+import {ListType} from '../../../help-requests.model';
 
 @Component({
   selector: 'app-request-offer-list-content',

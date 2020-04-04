@@ -10,10 +10,6 @@ const routes: Routes = [
       path: 'help-requests',
       loadChildren: () => import('./modules/help-requests/help-requests.module').then(m => m.HelpRequestsModule)
     },
-    {
-      path: 'request-offer',
-      loadChildren: () => import('./modules/request-offer-list/request-offer-list.module').then(m => m.RequestOfferListModule)
-    }
   ]
 ;
 

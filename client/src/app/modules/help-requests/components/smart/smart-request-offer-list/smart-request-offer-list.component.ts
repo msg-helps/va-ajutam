@@ -1,11 +1,11 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {selectListState, StateWithRequestOfferList,} from '../../../state/request-offer-list.reducer';
 import {Observable} from 'rxjs';
-import {ListType} from '../../../request-offer-list.model';
-import {ChangeListType} from '../../../state/request-offer-list.actions';
+import {ListType} from '../../../help-requests.model';
 import HelpRequest from '../../../../../shared/model/help-request.model';
 import HelpOffer from '../../../../../shared/model/help-offer.model';
+import {selectHelpRequestState, StateWithHelpRequest} from '../../../state/help-request.reducer';
+import {ChangeListType} from '../../../state/help-request.action';
 
 @Component({
   selector: 'app-smart-request-offer-list',
@@ -34,15 +34,15 @@ export class SmartRequestOfferListComponent implements OnInit {
   requestsListItem$: Observable<HelpRequest[]>;
   offersListItem$: Observable<HelpOffer[]>;
 
-  constructor(private store: Store<StateWithRequestOfferList>) {
+  constructor(private store: Store<StateWithHelpRequest>) {
   }
 
   ngOnInit(): void {
-    this.selectedListType$ = this.store.select(selectListState).pipe(select(state => state.selectedListType));
+    this.selectedListType$ = this.store.select(selectHelpRequestState).pipe(select(state => state.selectedListType));
     this.selectedListType$.subscribe(console.log);
-    this.requestsListItem$ = this.store.select(selectListState).pipe(select(state => state.requests));
-    this.offersListItem$ = this.store.select(selectListState).pipe(select(state => state.offers));
-    this.isLoading$ = this.store.select(selectListState).pipe(select(state => state.loading));
+    this.requestsListItem$ = this.store.select(selectHelpRequestState).pipe(select(state => state.requests));
+    this.offersListItem$ = this.store.select(selectHelpRequestState).pipe(select(state => state.offers));
+    this.isLoading$ = this.store.select(selectHelpRequestState).pipe(select(state => state.loading));
   }
 
   onListTypeChange(type: ListType) {

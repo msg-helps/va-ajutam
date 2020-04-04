@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import HelpRequest from '../../../../../shared/model/help-request.model';
 
 @Component({
@@ -6,29 +6,30 @@ import HelpRequest from '../../../../../shared/model/help-request.model';
   template: `
       <span>
         <app-info-card title="CE ESTE SOLICITAT">
-          <app-info-card-text muted="true" >{{ helpRequest.description }}</app-info-card-text>
+          <app-info-card-text muted="true">{{ helpRequest.description }}</app-info-card-text>
         </app-info-card>
 
         <app-info-card title="CINE SOLICITA AJUTOR">
-          <app-info-card-text muted="true" >{{ helpRequest.requestedFor }}</app-info-card-text>
+          <app-info-card-text muted="true">{{ helpRequest.requestedFor }}</app-info-card-text>
           <div class="row mt-3">
             <div class="col-6">
-              <app-info-card-text muted="true" >{{ helpRequest.contactPerson }}</app-info-card-text>
+              <app-info-card-text muted="true">{{ helpRequest.contactPerson }}</app-info-card-text>
             </div>
             <div class="col-6 text-right">
-              <app-info-card-text><a [href]="'tel:' + helpRequest.contactPhone">{{ helpRequest.contactPhone }}</a></app-info-card-text>
+              <app-info-card-text><a
+                      [href]="'tel:' + helpRequest.contactPhone">{{ helpRequest.contactPhone }}</a></app-info-card-text>
             </div>
           </div>
         </app-info-card>
 
         <app-info-card title="ADRESA CORESPONDENTA">
-          <app-info-card-text muted="true" >{{ helpRequest.address }}</app-info-card-text>
+          <app-info-card-text muted="true">{{ helpRequest.address }}</app-info-card-text>
           <div class="mt-2">
             <agm-map
-              *ngIf="mapsVisible"
-              [latitude]="mapsCoords[0]"
-              [longitude]="mapsCoords[1]"
-              [zoom]="15"
+                    *ngIf="mapsVisible"
+                    [latitude]="mapsCoords[0]"
+                    [longitude]="mapsCoords[1]"
+                    [zoom]="15"
             >
               <agm-marker [latitude]="mapsCoords[0]" [longitude]="mapsCoords[1]"></agm-marker>
             </agm-map>

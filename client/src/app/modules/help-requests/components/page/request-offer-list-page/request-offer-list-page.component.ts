@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {RequestOfferListState} from '../../../state/request-offer-list.reducer';
-import {LoadOffers} from '../../../state/request-offer-list.actions';
+import {LoadOffers} from '../../../state/help-request.action';
+import {StateWithHelpRequest} from '../../../state/help-request.reducer';
 
 @Component({
   selector: 'app-request-offer-list-page',
@@ -14,7 +14,7 @@ import {LoadOffers} from '../../../state/request-offer-list.actions';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RequestOfferListPageComponent implements OnInit {
-  constructor(private store: Store<RequestOfferListState>) {
+  constructor(private store: Store<StateWithHelpRequest>) {
   }
 
   ngOnInit(): void {

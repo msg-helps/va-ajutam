@@ -12,7 +12,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PetModule} from './modules/pet-example/pet.module';
 import {reducers} from './shared/state/state';
-import {RequestOfferListModule} from './modules/request-offer-list/request-offer-list.module';
 import {SharedModule} from './shared/shared.module';
 
 @NgModule({

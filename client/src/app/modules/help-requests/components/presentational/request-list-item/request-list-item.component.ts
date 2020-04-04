@@ -9,12 +9,12 @@ import HelpRequest from '../../../../../shared/model/help-request.model';
               <div class="card w-100">
                   <div class="card-body">
                       <h5 class="card-title">{{item.title}}</h5>
-                          <h6 class="text-muted">{{item.requestedFor}}</h6>
+                      <h6 class="text-muted">{{item.requestedFor}}</h6>
                       <span class="badge badge-pill badge-secondary">{{item.contactPhone.toLocaleString()}}</span>
                       <span class="badge badge-pill badge-danger ml-1">Volunteers: {{item.volunteers.length}}
                           pers.</span>
                       <p class="card-text">{{item.description}}</p>
-                      <button class="btn btn-primary">Read more</button>
+                      <a class="btn btn-primary" routerLink="./{{item.id}}">Read more</a>
                   </div>
               </div>
           </div>

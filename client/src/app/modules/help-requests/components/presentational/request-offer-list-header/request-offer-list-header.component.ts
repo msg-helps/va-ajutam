@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {ListType} from '../../../request-offer-list.model';
+import {ListType} from '../../../help-requests.model';
 
 @Component({
   selector: 'app-request-offer-list-header',
