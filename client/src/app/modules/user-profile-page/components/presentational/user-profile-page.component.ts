@@ -4,7 +4,7 @@ import {FormGroup} from '@angular/forms';
 @Component({
   selector: 'app-user-profile-page',
   template: `
-      <h2> Profile </h2>
+      <h2> My Data </h2>
       <div class="col-md-6 col-lg-6 well">
           <form [formGroup]="userGroup">
               <div class='form-group'>
