@@ -1,25 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreatepageComponent } from './create-page/createpage.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/offer',
-    pathMatch: 'full'
-  },
-  {
-    path: 'offer',
-    component: CreatepageComponent
-  },
-  {
-    path: 'request',
-    component: CreatepageComponent
-  },
-  {
     path: 'pets',
     loadChildren: './modules/pet-example/pet.module#PetModule'
-  }
+  },
+  { path: 'help', loadChildren: () => import('./modules/create_page/createpage.module').then(m => m.CreatepageModule) },
+
 
 ];
 

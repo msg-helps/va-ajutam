@@ -1,5 +1,4 @@
-
-class RequestVsOffer {
+export default class RequestVsOffer {
   title: string;
   name: string;
   contactPerson: string;
@@ -15,6 +14,3 @@ class RequestVsOffer {
   }
 
 }
-export default RequestVsOffer;
-
-
