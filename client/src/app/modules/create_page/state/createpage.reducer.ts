@@ -10,7 +10,7 @@ export interface HelpOfferRequestState {
 }
 
 export interface StateWithHelpOfferRequest extends State {
-  helpOfferRequestReducer: HelpOfferRequestState;
+  helpOfferRequestState: HelpOfferRequestState;
 }
 
 export const initialState: HelpOfferRequestState = {
@@ -64,4 +64,4 @@ export function helpOfferRequestReducer(state = initialState, action: HelpOfferR
     }
   }
 }
-export const selectHelpOfferRequestState = (state: StateWithHelpOfferRequest) => state.helpOfferRequestReducer;
+export const selectHelpOfferRequestState = (state: StateWithHelpOfferRequest) => state.helpOfferRequestState;

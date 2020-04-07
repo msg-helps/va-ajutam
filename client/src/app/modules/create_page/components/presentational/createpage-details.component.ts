@@ -12,7 +12,7 @@ import StaticContentLabel from '../../../../shared/model/createpage-static-conte
     <fieldset>
       <div class="form-group">
         <label class="col-md-3 control-label" for="title">{{staticContent.title}}</label>
-        <div class="col-md-9">
+        <div class="col-md-12">
           <textarea formControlName="title" placeholder="Detalii despre ce oferi" id="title" type="text" class="form-control input-md"></textarea>
           <span class="help-block" *ngIf="!addForm.get('title').valid && addForm.get('title').touched">
             {{validation.detailsV}}
@@ -22,7 +22,7 @@ import StaticContentLabel from '../../../../shared/model/createpage-static-conte
 
       <div class="form-group">
         <label class="col-md-3 control-label" for="details">{{staticContent.description}}</label>
-        <div class="col-md-9">
+        <div class="col-md-12">
           <input formControlName="name" placeholder="Florentina Dragu"  id="name" type="text" class="form-control input-md">
           <span class="help-block" *ngIf="!addForm.get('name').valid && addForm.get('name').touched">
             {{validation.nameV}}
@@ -40,16 +40,21 @@ import StaticContentLabel from '../../../../shared/model/createpage-static-conte
 
       <div class="form-group">
         <label class="col-md-3 control-label" for="address">{{staticContent.address}}</label>
-        <div class="col-md-9">
+        <div class="col-md-12">
           <textarea formControlName="address" placeholder="Adresa de unde se poate ridicat" id="address" type="text" class="form-control input-md"></textarea>
           <span class="help-block" *ngIf="!addForm.get('address').valid && addForm.get('address').touched">
            {{validation.addressV}}
           </span>
         </div>
       </div>
-
-      <button class="btn btn-primary" type="submit" [disabled]="!addForm.valid" (click)="saveButton.emit()">{{staticContent.buttonName}}</button>
-    </fieldset>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="text-center">
+            <button class="btn btn-primary" type="submit" [disabled]="!addForm.valid" (click)="saveButton.emit()">{{staticContent.buttonName}}</button>
+          </div>
+        </div>
+      </div>
+      </fieldset>
   </form>
   </div>
   `,

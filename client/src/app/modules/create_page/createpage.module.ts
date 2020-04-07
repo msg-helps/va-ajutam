@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     CreatepageRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('help', helpOfferRequestReducer),
+    StoreModule.forFeature('helpOfferRequestState', helpOfferRequestReducer),
     EffectsModule.forFeature([HelpOfferRequestEffects]),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

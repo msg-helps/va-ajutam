@@ -39,12 +39,10 @@ export class SmartCreatePageDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initModel(this.router.url); // TAKE THIS FROM ROUTE PATH
-  //TODO: Inspect and resolve the failing data
+    this.initModel(this.router.url);
     this.helpModel$ = this.store.select(selectHelpOfferRequestState).pipe(select(state => state.data));
     this.loading$ = this.store.select(selectHelpOfferRequestState).pipe(select(state => state.loading));
     this.saving$ = this.store.select(selectHelpOfferRequestState).pipe(select(state => state.saving));
-
     this.addForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       name: new FormControl(null, Validators.required),
@@ -52,6 +50,16 @@ export class SmartCreatePageDetailsComponent implements OnInit {
       phoneNumber: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required)
     });
+
+    /**
+     * When you create Edit page then add this:
+     *
+     *  this.helpModel$.pipe(filter(data => !!(data))).subscribe(data =>
+     * this.addForm.patchValue
+     * ({title: data.title, name: data.user.firstName,
+     * contactPerson: data.contactPerson, phoneNumber: data.contactPhone,
+     * address: data.address }));
+     */
     this.route.params.subscribe(param => {
       this.store.dispatch(new LoadHelpOfferRequest(param.id));
     });
@@ -76,8 +84,6 @@ export class SmartCreatePageDetailsComponent implements OnInit {
     if (path === '/help/offer') {
       this.staticContent.title = Consts.OFFER_TITLE;
       this.staticContent.description = Consts.OFFER_DETAILS;
-      // this.helpModel$.subscribe( data =>  data.title = Consts.OFFER_TITLE);
-      // this.helpModel$.subscribe( description =>  Consts.OFFER_DETAILS);
       this.staticContent.buttonName = Consts.OFFER_BUTTON;
     } else if (path === '/help/request') {
       this.staticContent.title = Consts.REQUEST_TITLE;
