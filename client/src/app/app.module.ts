@@ -14,6 +14,7 @@ import {PetModule} from './modules/pet-example/pet.module';
 import {reducers} from './shared/state/state';
 import {LoginModule} from './modules/login/login.module';
 import {SharedModule} from './shared/shared.module';
+import {AuthService} from './shared/auth.service';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,10 @@ import {SharedModule} from './shared/shared.module';
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
   ],
-  providers: [],
-  exports: [
+  providers: [
+    AuthService
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

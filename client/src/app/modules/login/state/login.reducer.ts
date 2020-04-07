@@ -1,6 +1,6 @@
 import State from '../../../shared/state/state';
-import {User} from '../login.model';
 import {LoginActionTypes, LoginActionUnion} from './login.actions';
+import User from '../../../shared/model/user.model';
 
 export interface LoginState {
   data: User;

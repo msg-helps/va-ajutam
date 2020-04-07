@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {LoginProvider} from '../../../login.model';
+import {LoginProvider} from '../../../../../shared/model/login.model';
 
 @Component({
   selector: 'app-login',

@@ -8,8 +8,7 @@ import {LoginRoutingModule} from './login-routing.module';
 import {LoginComponent} from './components/presentational/login/login.component';
 import {SmartLoginComponent} from './components/smart/smart-login/smart-login.component';
 import {LoginPageComponent} from './components/page/login-page/login-page.component';
-import {LoginService} from './login.service';
-
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,11 +19,14 @@ import {LoginService} from './login.service';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     StoreModule.forFeature('login', loginReducer),
     EffectsModule.forFeature([LoginEffects]),
     LoginRoutingModule,
   ],
-  exports: [LoginPageComponent],
-  providers: [LoginService]
+  exports: [
+    LoginPageComponent
+  ],
+  providers: []
 })
 export class LoginModule {}

@@ -1,4 +1,5 @@
-import {LoginProvider, User} from '../login.model';
+import {LoginProvider} from '../../../shared/model/login.model';
+import User from '../../../shared/model/user.model';
 
 export enum LoginActionTypes {
   Login = '[Login] Login',
@@ -8,7 +9,9 @@ export enum LoginActionTypes {
 
 export class Login {
   readonly type = LoginActionTypes.Login;
-  constructor(public provider: LoginProvider) {}
+
+  constructor(public provider: LoginProvider) {
+  }
 }
 
 export class LoginSuccess {

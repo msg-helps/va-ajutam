@@ -20,7 +20,8 @@ import { RouterModule } from '@angular/router';
     InfoCardTextComponent,
     LoadingSpinnerComponent,
     NavbarComponent
-  ]
+  ],
+  providers: []
 })
 export class SharedModule {
 }
