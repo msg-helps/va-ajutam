@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {Store} from '@ngrx/store';
-import {catchError, map, switchMap, tap} from 'rxjs/operators';
+import {select, Store} from '@ngrx/store';
+import {catchError, delay, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import State from '../../../shared/state/state';
+import {ListType} from '../help-requests.model';
 import {HelpRequestsService} from '../help-requests.service';
 import {
   ChangeListType,
@@ -12,9 +13,23 @@ import {
   HelpRequestActionTypes,
   LoadHelpRequest,
   LoadHelpRequestFailure,
-  LoadHelpRequestSuccess, LoadOffers, LoadOffersSuccess, LoadRequestOfferFailure, LoadRequests, LoadRequestsSuccess
+  LoadHelpRequestMessages,
+  LoadHelpRequestMessagesFailure,
+  LoadHelpRequestMessagesSuccess,
+  LoadHelpRequestSuccess,
+  LoadOffers,
+  LoadOffersSuccess,
+  LoadRequestOfferFailure,
+  LoadRequests,
+  LoadRequestsSuccess,
+  PostHelpRequestMessage,
+  PostHelpRequestMessageFailure,
+  PostHelpRequestMessageSuccess,
+  ShortPollHelpRequestMessages,
+  ShortPollHelpRequestMessagesFailure,
+  ShortPollHelpRequestMessagesSuccess
 } from './help-request.action';
-import {ListType} from '../help-requests.model';
+import {selectHelpRequestState} from './help-request.reducer';
 
 @Injectable()
 export class HelpRequestEffects {
@@ -29,7 +44,7 @@ export class HelpRequestEffects {
   @Effect()
   public loadHelpRequest$ = this.actions$.pipe(
     ofType<LoadHelpRequest>(HelpRequestActionTypes.LoadHelpRequest),
-    switchMap(() => this.service.loadHelpRequest()
+    switchMap(action => this.service.loadHelpRequest(action.payload.id)
       .then(result => new LoadHelpRequestSuccess(result))
       .catch(() => new LoadHelpRequestFailure()))
   );
@@ -76,5 +91,36 @@ export class HelpRequestEffects {
     ofType<ChangeListType>(HelpRequestActionTypes.ChangeListType),
     map(action => action.payload),
     map(listType => listType === ListType.OFFERS ? new LoadOffers() : new LoadRequests())
+  );
+
+  @Effect()
+  public loadHelpRequestMessages$ = this.actions$.pipe(
+    ofType<LoadHelpRequestMessages>(HelpRequestActionTypes.LoadHelpRequestMessages),
+    switchMap(action => this.service.loadMessages(action.payload)),
+    map(result => new LoadHelpRequestMessagesSuccess(result)),
+    catchError(() => [new LoadHelpRequestMessagesFailure()])
+  );
+
+  @Effect()
+  public postHelpRequestMessage$ = this.actions$.pipe(
+    ofType<PostHelpRequestMessage>(HelpRequestActionTypes.PostHelpRequestMessage),
+    switchMap(action => this.service.postMessage(action.payload.id, action.payload.message)),
+    map(result => new PostHelpRequestMessageSuccess(result)),
+    catchError(() => [new PostHelpRequestMessageFailure()])
+  );
+
+  @Effect()
+  public shortPollHelpRequestMessage$ = this.actions$.pipe(
+    ofType<ShortPollHelpRequestMessages>(HelpRequestActionTypes.ShortPollHelpRequestMessages),
+    delay(5000),
+    withLatestFrom(this.store.select(selectHelpRequestState).pipe(
+      select(state => state.messages),
+      map(messages => messages.length === 0 ? new Date(0) : messages.slice(-1)[0].createdAt)
+    )),
+    switchMap(([action, lastMessageCreatedAt]) =>
+      this.service.loadNewMessages(action.payload, lastMessageCreatedAt)
+        .then(messages => [new ShortPollHelpRequestMessagesSuccess(messages), new ShortPollHelpRequestMessages(action.payload)])
+        .catch(() => [new ShortPollHelpRequestMessagesFailure()])),
+    switchMap(x => x)
   );
 }

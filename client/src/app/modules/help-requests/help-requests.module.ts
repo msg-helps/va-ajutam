@@ -1,6 +1,7 @@
 import {AgmCoreModule} from '@agm/core';
 import {CommonModule} from '@angular/common';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {ReactiveFormsModule} from "@angular/forms";
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
 import {environment} from '../../../environments/environment';
@@ -18,6 +19,9 @@ import {RequestOfferListHeaderComponent} from './components/presentational/reque
 import {RequestListItemComponent} from './components/presentational/request-list-item/request-list-item.component';
 import {RequestOfferListContentComponent} from './components/presentational/request-offer-list-content/request-offer-list-content.component';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import { HelpRequestCommentsPageComponent } from './components/page/help-request-comments-page/help-request-comments-page.component';
+import { SmartHelpRequestCommentsComponent } from './components/smart/smart-help-request-comments/smart-help-request-comments.component';
+import { CommentTextFieldComponent } from './components/presentational/comment-text-field/comment-text-field.component';
 
 
 @NgModule({
@@ -30,18 +34,22 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
     RequestOfferListPageComponent,
     RequestOfferListHeaderComponent,
     RequestListItemComponent,
-    RequestOfferListContentComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    HelpRequestsRoutingModule,
-    StoreModule.forFeature('helpRequest', helpRequestReducer),
-    EffectsModule.forFeature([HelpRequestEffects]),
-    AgmCoreModule.forRoot({
-      apiKey: environment.googleMapsKey
-    }),
-    NgbDropdownModule
-  ],
+    RequestOfferListContentComponent,
+    HelpRequestCommentsPageComponent,
+    SmartHelpRequestCommentsComponent,
+    CommentTextFieldComponent],
+    imports: [
+        CommonModule,
+        SharedModule,
+        HelpRequestsRoutingModule,
+        StoreModule.forFeature('helpRequest', helpRequestReducer),
+        EffectsModule.forFeature([HelpRequestEffects]),
+        AgmCoreModule.forRoot({
+            apiKey: environment.googleMapsKey
+        }),
+        NgbDropdownModule,
+        ReactiveFormsModule
+    ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HelpRequestsModule {

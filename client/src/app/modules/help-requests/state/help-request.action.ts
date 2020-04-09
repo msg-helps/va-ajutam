@@ -1,7 +1,8 @@
 import {Action} from '@ngrx/store';
-import HelpRequest from '../../../shared/model/help-request.model';
-import {ListType} from '../help-requests.model';
 import HelpOffer from '../../../shared/model/help-offer.model';
+import HelpRequest from '../../../shared/model/help-request.model';
+import Message from '../../../shared/model/message.model';
+import {ListType, MessageInputDto} from '../help-requests.model';
 
 export enum HelpRequestActionTypes {
   LoadHelpRequest = '[Help Request] Load',
@@ -15,7 +16,16 @@ export enum HelpRequestActionTypes {
   LoadOffers = '[RequestOfferList] Load Offers',
   LoadOffersSuccess = '[RequestOfferList] Load Offers Success',
   LoadRequestOfferFailure = '[RequestOfferList] Load Request Offer Failure',
-  ChangeListType = '[RequestOfferList] Change List Type'
+  ChangeListType = '[RequestOfferList] Change List Type',
+  LoadHelpRequestMessages = '[ Help Request ] Load Messages',
+  LoadHelpRequestMessagesSuccess = '[ Help Request ] Load Messages Success',
+  LoadHelpRequestMessagesFailure = '[ Help Request ] Load Messages Failure',
+  PostHelpRequestMessage = '[ Help Request ] Post Message',
+  PostHelpRequestMessageSuccess = '[ Help Request ] Post Message Success',
+  PostHelpRequestMessageFailure = '[ Help Request ] Post Message Failure',
+  ShortPollHelpRequestMessages = '[ Help Request ] Short Poll Messages',
+  ShortPollHelpRequestMessagesSuccess = '[ Help Request ] Short Poll Messages Success',
+  ShortPollHelpRequestMessagesFailure = '[ Help Request ] Short Poll Messages Failure',
 }
 
 export class LoadHelpRequest implements Action {
@@ -88,7 +98,61 @@ export class LoadRequestOfferFailure implements Action {
   readonly type = HelpRequestActionTypes.LoadRequestOfferFailure;
 }
 
+export class LoadHelpRequestMessages implements Action {
+  readonly type = HelpRequestActionTypes.LoadHelpRequestMessages;
+
+  constructor(public payload: string) {} // help-request id
+}
+
+export class LoadHelpRequestMessagesSuccess implements Action {
+  readonly type = HelpRequestActionTypes.LoadHelpRequestMessagesSuccess;
+
+  constructor(public payload: Message[]) {}
+}
+
+export class LoadHelpRequestMessagesFailure implements Action {
+  readonly type = HelpRequestActionTypes.LoadHelpRequestMessagesFailure;
+}
+
+export class PostHelpRequestMessage implements Action {
+  readonly type = HelpRequestActionTypes.PostHelpRequestMessage;
+
+  constructor(public payload: { message: MessageInputDto, id: string }) {}
+}
+
+export class PostHelpRequestMessageSuccess implements Action {
+  readonly type = HelpRequestActionTypes.PostHelpRequestMessageSuccess;
+
+  constructor(public payload: Message) {}
+}
+
+export class PostHelpRequestMessageFailure implements Action {
+  readonly type = HelpRequestActionTypes.PostHelpRequestMessageFailure;
+}
+
+export class ShortPollHelpRequestMessages implements Action {
+  readonly type = HelpRequestActionTypes.ShortPollHelpRequestMessages;
+
+  constructor(public payload: string) {}
+}
+
+export class ShortPollHelpRequestMessagesSuccess implements Action {
+  readonly type = HelpRequestActionTypes.ShortPollHelpRequestMessagesSuccess;
+
+  constructor(public payload: Message[]) {}
+}
+
+export class ShortPollHelpRequestMessagesFailure implements Action {
+  readonly type = HelpRequestActionTypes.ShortPollHelpRequestMessagesFailure;
+}
+
 export type HelpRequestActionUnion = LoadHelpRequest
+  | ShortPollHelpRequestMessages
+  | ShortPollHelpRequestMessagesSuccess
+  | ShortPollHelpRequestMessagesFailure
+  | PostHelpRequestMessage
+  | PostHelpRequestMessageSuccess
+  | PostHelpRequestMessageFailure
   | LoadHelpRequestSuccess
   | LoadHelpRequestFailure
   | ConvertHelpRequestAddressToCoords
@@ -99,4 +163,7 @@ export type HelpRequestActionUnion = LoadHelpRequest
   | LoadOffers
   | LoadOffersSuccess
   | LoadRequestOfferFailure
-  | ChangeListType;
+  | ChangeListType
+  | LoadHelpRequestMessages
+  | LoadHelpRequestMessagesFailure
+  | LoadHelpRequestMessagesSuccess;

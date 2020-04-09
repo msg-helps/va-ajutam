@@ -1,8 +1,9 @@
-import HelpRequest from '../../../shared/model/help-request.model';
-import State from '../../../shared/state/state';
-import {HelpRequestActionTypes, HelpRequestActionUnion} from './help-request.action';
 import HelpOffer from '../../../shared/model/help-offer.model';
+import HelpRequest from '../../../shared/model/help-request.model';
+import Message from "../../../shared/model/message.model";
+import State from '../../../shared/state/state';
 import {ListType} from '../help-requests.model';
+import {HelpRequestActionTypes, HelpRequestActionUnion} from './help-request.action';
 
 export interface HelpRequestState {
   data: HelpRequest;
@@ -11,6 +12,7 @@ export interface HelpRequestState {
   selectedListType: ListType;
   error: boolean;
   loading: boolean;
+  messages: Message[];
   coords: {
     loading: boolean;
     data: [number, number];
@@ -28,6 +30,7 @@ export const initialState: HelpRequestState = {
   data: null,
   loading: true,
   error: false,
+  messages: [],
   coords: {
     loading: true,
     data: null
@@ -110,6 +113,7 @@ export function helpRequestReducer(state = initialState, action: HelpRequestActi
         loading: false,
         error: false
       };
+    case HelpRequestActionTypes.LoadHelpRequestMessagesFailure:
     case HelpRequestActionTypes.LoadRequestOfferFailure:
       return {
         ...state,
@@ -120,6 +124,30 @@ export function helpRequestReducer(state = initialState, action: HelpRequestActi
       return {
         ...state,
         selectedListType: action.payload
+      };
+    case HelpRequestActionTypes.LoadHelpRequestMessages:
+      return {
+        ...state,
+        messages: [],
+        loading: true,
+        error: false
+      };
+    case HelpRequestActionTypes.LoadHelpRequestMessagesSuccess:
+      return {
+        ...state,
+        messages: action.payload,
+        loading: false,
+        error: false
+      };
+    case HelpRequestActionTypes.PostHelpRequestMessageSuccess:
+      return {
+        ...state,
+        messages: [action.payload, ...state.messages]
+      };
+    case HelpRequestActionTypes.ShortPollHelpRequestMessagesSuccess:
+      return {
+        ...state,
+        messages: [...action.payload, ...state.messages]
       };
     default: {
       return state;

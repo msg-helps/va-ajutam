@@ -4,12 +4,12 @@ import {Component} from '@angular/core';
   selector: 'app-help-request-detail-page',
   template: `
     <div class="container">
-        <div class="row my-3">
+        <div class="row mt-2 mb-1">
           <div class="col-6">
-          <button class="btn btn-sm btn-outline-primary" [routerLink]="'../'">BACK PH</button>
+          <button class="btn btn-sm btn-link" [routerLink]="'../'">Inapoi</button>
         </div>
           <div class="col-6 text-right">
-            <button class="btn btn-sm btn-link comments-link" [routerLink]="'./comments'">Vezi Comentarii</button>
+            <button class="btn btn-sm btn-link" [routerLink]="'./comments'">Vezi Comentarii</button>
           </div>
         </div>
       <app-smart-help-request-detail></app-smart-help-request-detail>
