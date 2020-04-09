@@ -13,6 +13,7 @@ import {AppComponent} from './app.component';
 import {PetModule} from './modules/pet-example/pet.module';
 import {reducers} from './shared/state/state';
 import {SharedModule} from './shared/shared.module';
+import {UserEffects} from './shared/user/state/user.effect';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {SharedModule} from './shared/shared.module';
     PetModule,
     SharedModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([UserEffects]),
     !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
   ],
   providers: [],

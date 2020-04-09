@@ -1,4 +1,4 @@
-import User from '../../../shared/model/user.model';
+import User from '../../model/user.model';
 
 export enum UserActionTypes {
   LoadUser = '[User] Load',

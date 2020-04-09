@@ -39,7 +39,6 @@ export class SmartRequestOfferListComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedListType$ = this.store.select(selectHelpRequestState).pipe(select(state => state.selectedListType));
-    this.selectedListType$.subscribe(console.log);
     this.requestsListItem$ = this.store.select(selectHelpRequestState).pipe(select(state => state.requests));
     this.offersListItem$ = this.store.select(selectHelpRequestState).pipe(select(state => state.offers));
     this.isLoading$ = this.store.select(selectHelpRequestState).pipe(select(state => state.loading));
