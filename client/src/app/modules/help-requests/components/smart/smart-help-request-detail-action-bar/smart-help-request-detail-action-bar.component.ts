@@ -5,7 +5,7 @@ import User from '../../../../../shared/model/user.model';
 @Component({
   selector: 'app-smart-help-request-detail-action-bar',
   template: `
-      <div class="container text-center mt-3 mb-3" *ngIf="isParticipant(); else participantContainer">
+      <div class="container text-center mt-3 mb-3" *ngIf="isParticipant; else participantContainer">
           <div class="row pt-2 centered">
               <div class="col-6">
                   <button class="btn btn-lg btn-primary" (click)="volunteer.emit()">Ofera-te ca voluntar</button>
@@ -39,7 +39,7 @@ export class SmartHelpRequestDetailActionBarComponent {
   @Output() removeParticipation = new EventEmitter<void>();
   @Output() markAsDone: EventEmitter<string> = new EventEmitter<string>();
 
-  isParticipant() {
+  get isParticipant() {
     return this.helpRequest.volunteers.map(user => user.id).includes(this.currentUser.id);
   }
 }
