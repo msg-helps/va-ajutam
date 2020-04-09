@@ -15,7 +15,7 @@ import * as Consts from './../../../../shared/consts';
 @Component({
   selector: 'app-smart-createpage-details',
   template: `
-    <app-createpage-details
+    <app-createpage-details *ngIf="addForm"
       [helpModel]="helpModel$ | async"
       [addForm]="addForm"
       [validation]="validation"
@@ -67,11 +67,11 @@ export class SmartCreatePageDetailsComponent implements OnInit {
 
   initModel(path: string) {
     this.validation = {
-      addressV: Consts.ADDRESS_VALIDATION,
-      detailsV: Consts.DETAILS_VALIDATION,
-      phoneV: Consts.NUMBER_VALIDATION,
-      personV: Consts.CONTACT_PERSON_VALIDATION,
-      nameV: Consts.NAME_VALIDATION
+      address: Consts.ADDRESS_VALIDATION,
+      details: Consts.DETAILS_VALIDATION,
+      phone: Consts.NUMBER_VALIDATION,
+      person: Consts.CONTACT_PERSON_VALIDATION,
+      name: Consts.NAME_VALIDATION
     };
 
     this.staticContent = {

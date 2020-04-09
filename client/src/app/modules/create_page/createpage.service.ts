@@ -1,13 +1,10 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import BaseHelp, {HelpCategory} from '../../shared/model/help.model';
+import { Injectable } from '@angular/core';
+import BaseHelp, { HelpCategory } from '../../shared/model/help.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelpOfferRequestService {
-  constructor() {
-  }
 
   async loadHelpOfferRequest(): Promise<BaseHelp> {
     const request: BaseHelp = {

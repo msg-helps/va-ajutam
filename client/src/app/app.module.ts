@@ -12,8 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PetModule } from './modules/pet-example/pet.module';
 import { reducers } from './shared/state/state';
-import { CreatepageModule } from './modules/create_page/createpage.module';
-
 
 
 @NgModule({
@@ -29,7 +27,6 @@ import { CreatepageModule } from './modules/create_page/createpage.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     PetModule,
-    CreatepageModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 10 }) : []

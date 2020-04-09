@@ -3,11 +3,10 @@ import { FormGroup } from '@angular/forms';
 import CreatePageValidation from 'src/app/shared/model/createpage-validation.model';
 import BaseHelp from '../../../../shared/model/help.model';
 import StaticContentLabel from '../../../../shared/model/createpage-static-content.model';
-
 @Component({
   selector: 'app-createpage-details',
   template: `
-  <div class="container" *ngIf="addForm">
+  <div class="container">
   <form class="form-horizontal" [formGroup]="addForm">
     <fieldset>
       <div class="form-group">
@@ -15,7 +14,7 @@ import StaticContentLabel from '../../../../shared/model/createpage-static-conte
         <div class="col-md-12">
           <textarea formControlName="title" placeholder="Detalii despre ce oferi" id="title" type="text" class="form-control input-md"></textarea>
           <span class="help-block" *ngIf="!addForm.get('title').valid && addForm.get('title').touched">
-            {{validation.detailsV}}
+            {{validation.details}}
           </span>
         </div>
       </div>
@@ -23,17 +22,17 @@ import StaticContentLabel from '../../../../shared/model/createpage-static-conte
       <div class="form-group">
         <label class="col-md-3 control-label" for="details">{{staticContent.description}}</label>
         <div class="col-md-12">
-          <input formControlName="name" placeholder="Florentina Dragu"  id="name" type="text" class="form-control input-md">
+          <input formControlName="name" placeholder="Ion Popescu"  id="name" type="text" class="form-control input-md">
           <span class="help-block" *ngIf="!addForm.get('name').valid && addForm.get('name').touched">
-            {{validation.nameV}}
+            {{validation.name}}
           </span>
           <input formControlName="contactPerson" placeholder="Persoana de contact" id="contactPerson" type="text" class="form-control input-md">
           <span class="help-block" *ngIf="!addForm.get('contactPerson').valid && addForm.get('contactPerson').touched">
-            {{validation.personV}}
+            {{validation.person}}
           </span>
           <input formControlName="phoneNumber" placeholder="Numar de telefon" id="phoneNumber" type="text" class="form-control input-md">
           <span class="help-block" *ngIf="!addForm.get('phoneNumber').valid && addForm.get('phoneNumber').touched">
-            {{validation.phoneV}}
+            {{validation.phone}}
           </span>
         </div>
       </div>
@@ -43,7 +42,7 @@ import StaticContentLabel from '../../../../shared/model/createpage-static-conte
         <div class="col-md-12">
           <textarea formControlName="address" placeholder="Adresa de unde se poate ridicat" id="address" type="text" class="form-control input-md"></textarea>
           <span class="help-block" *ngIf="!addForm.get('address').valid && addForm.get('address').touched">
-           {{validation.addressV}}
+           {{validation.address}}
           </span>
         </div>
       </div>

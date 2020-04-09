@@ -1,7 +1,7 @@
 export default interface CreatePageValidation {
-  detailsV: string;
-  nameV: string;
-  personV: string;
-  phoneV: string;
-  addressV: string;
+  details: string;
+  name: string;
+  person: string;
+  phone: string;
+  address: string;
 }
