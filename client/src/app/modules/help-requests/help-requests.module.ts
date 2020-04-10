@@ -16,8 +16,10 @@ import {OfferListItemComponent} from './components/presentational/offer-list-ite
 import {RequestOfferListPageComponent} from './components/page/request-offer-list-page/request-offer-list-page.component';
 import {RequestOfferListHeaderComponent} from './components/presentational/request-offer-list-header/request-offer-list-header.component';
 import {RequestListItemComponent} from './components/presentational/request-list-item/request-list-item.component';
+// tslint:disable-next-line:max-line-length
 import {RequestOfferListContentComponent} from './components/presentational/request-offer-list-content/request-offer-list-content.component';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {SmartHelpRequestDetailActionBarComponent} from './components/smart/smart-help-request-detail-action-bar/smart-help-request-detail-action-bar.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
     RequestOfferListPageComponent,
     RequestOfferListHeaderComponent,
     RequestListItemComponent,
-    RequestOfferListContentComponent],
+    RequestOfferListContentComponent,
+    SmartHelpRequestDetailActionBarComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,

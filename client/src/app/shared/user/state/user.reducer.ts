@@ -1,15 +1,11 @@
-import State from "../../../shared/state/state";
-import User from '../../../shared/model/user.model';
+import State from '../../state/state';
+import User from '../../model/user.model';
 import { UserActionTypes, UserActionUnion } from './user.action';
 
 export interface UserState {
   data: User;
   loading: boolean;
   error: boolean;
-}
-
-export interface StateWithUser extends State {
-  user: UserState;
 }
 
 export const initialState: UserState = {
@@ -69,4 +65,4 @@ export function userReducer(state = initialState, action: UserActionUnion): User
     }
   }
 }
-export const selectUserState = (state: StateWithUser) => state.user;
+export const selectUserState = (state: State) => state.user;
