@@ -8,13 +8,13 @@ import AppStats from '../../../landing-page.model';
     <div class="content container" role="main">
       <!-- Situation Stats -->
       <div class="row">
-        <div class="col col-example">
+        <div class="col">
           <div id="confirmati" class="card card-small">
             <span>Confirmati:
               {{ appStats.confirmed }}</span>
           </div>
         </div>
-        <div class="col col-example">
+        <div class="col">
           <div id="vindecati" class="card card-small">
             <span>Vindecati:
               {{ appStats.cured }}</span>
@@ -22,13 +22,13 @@ import AppStats from '../../../landing-page.model';
         </div>
       </div>
       <div class="row">
-        <div class="col col-example">
+        <div class="col">
           <div id="carantina" class="card card-small">
             <span>Carantina:
               {{ appStats.quarantined }}</span>
           </div>
         </div>
-        <div class="col col-example">
+        <div class="col">
           <div id="izolare" class="card card-small">
             <span>Izolare:
               {{ appStats.isolated }}</span>
@@ -36,13 +36,13 @@ import AppStats from '../../../landing-page.model';
         </div>
       </div>
       <div class="row">
-        <div class="col col-example">
+        <div class="col">
           <div id="decese" class="card card-small">
             <span>Decese:
               {{ appStats.deaths }}</span>
           </div>
         </div>
-        <div class="col col-example">
+        <div class="col">
           <div id="teste" class="card card-small">
             <span>Teste:
               {{ appStats.tests }}</span>
@@ -50,13 +50,13 @@ import AppStats from '../../../landing-page.model';
         </div>
       </div>
       <div class="row">
-        <div class="col col-example">
+        <div class="col">
           <div id="apeluri112" class="card card-small">
             <span>Apeluri 112:
               {{ appStats.call112 }}</span>
           </div>
         </div>
-        <div class="col col-example">
+        <div class="col">
           <div id="telverde" class="card card-small">
             <span>Telverde:
               {{ appStats.telVerde }}</span>
