@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 import User from '../../../../shared/model/user.model';
-import { LoadUser } from '../../../user-profile-page/state/user.action';
-import { selectUserState, StateWithUser } from '../../../user-profile-page/state/user.reducer';
-import { FormGroup, FormControl } from '@angular/forms';
+import {LoadUser} from '../../../../shared/user/state/user.action';
+import {selectUserState} from '../../../../shared/user/state/user.reducer';
+import {FormControl, FormGroup} from '@angular/forms';
+import State from '../../../../shared/state/state';
 
 @Component({
-  selector: 'smart-user-profile-page',
+  selector: 'app-smart-user-profile-page',
   template: `
     <app-user-profile-page
       [userGroup]="userGroup">
@@ -39,7 +40,8 @@ export class SmartUserProfilePageComponent implements OnInit {
   isBanned: boolean;
   isAdmin: boolean;
 
-  constructor(private store: Store<StateWithUser>) { }
+  constructor(private store: Store<State>) {
+  }
 
   ngOnInit(): void {
 
@@ -60,7 +62,7 @@ export class SmartUserProfilePageComponent implements OnInit {
       })
   }
 
-  loadAnotherUser(){
+  loadAnotherUser() {
     this.store.dispatch(new LoadUser());
   }
 

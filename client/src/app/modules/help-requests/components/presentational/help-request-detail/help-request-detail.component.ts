@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import HelpRequest from '../../../../../shared/model/help-request.model';
 
 @Component({
@@ -50,10 +50,6 @@ import HelpRequest from '../../../../../shared/model/help-request.model';
             </tbody>
           </table>
         </app-info-card>
-
-        <div class="text-center mt-3">
-          <button class="btn btn-lg btn-primary" (click)="volunteer.emit()">Ofera-te ca voluntar</button>
-        </div>
       </span>
   `,
   styleUrls: ['./help-request-detail.component.scss']
@@ -62,5 +58,4 @@ export class HelpRequestDetailComponent {
   @Input() helpRequest: HelpRequest;
   @Input() mapsVisible: boolean;
   @Input() mapsCoords: [number, number];
-  @Output() volunteer = new EventEmitter<void>();
 }
