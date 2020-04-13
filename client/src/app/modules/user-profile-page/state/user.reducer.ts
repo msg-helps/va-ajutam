@@ -16,6 +16,7 @@ export const initialState: UserState = {
   data: {
       id: '',
       isAdmin: false,
+      isBanned: false,
       firstName: '',
       lastName: '',
       organization: '',
@@ -56,6 +57,7 @@ export function userReducer(state = initialState, action: UserActionUnion): User
         data: {
             id: '',
             isAdmin: false,
+            isBanned: false,
             firstName: '',
             lastName: '',
             organization: '',

@@ -6,6 +6,7 @@ export default interface User {
   lastName: string;
   phone: string;
   isAdmin: boolean;
+  isBanned: boolean;
   organization: string;
   region: string;
 }

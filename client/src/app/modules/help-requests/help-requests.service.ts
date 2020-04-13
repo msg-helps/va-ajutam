@@ -95,6 +95,7 @@ export class HelpRequestsService {
         phone: '0743-554-234',
         id: 'some-uuid-3',
         isAdmin: false,
+        isBanned: false,
         organization: null,
         region: 'Cluj-Napoca'
       },
@@ -107,7 +108,8 @@ export class HelpRequestsService {
           id: 'some-uuid-1',
           organization: null,
           region: 'Cluj-Napoca',
-          isAdmin: false
+          isAdmin: false,
+          isBanned: false
         },
         {
           firstName: 'Madalin',
@@ -116,7 +118,8 @@ export class HelpRequestsService {
           id: 'some-uuid-2',
           organization: null,
           region: 'Cluj-Napoca',
-          isAdmin: false
+          isAdmin: false,
+          isBanned: false
         }
       ]
     };

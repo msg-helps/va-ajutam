@@ -13,25 +13,37 @@ export class UserService {
     const users: User[] = [
       {
         id: null,
-        firstName: "Firstname",
-        lastName: "Lastname",
+        firstName: "NonAdmin",
+        lastName: "NonBanned",
         isAdmin: false,
+        isBanned: false,
         phone: "0757665889",
         organization: "OrganizationX",
         region: "Cluj" 
       },{ 
         id: null,
-        firstName: "Firstname1",
-        lastName: "Lastname1",
+        firstName: "NonAdmin",
+        lastName: "Banned",
         isAdmin: false,
+        isBanned: true,
         phone: "0757665889",
         organization: "OrganizationX",
         region: "Cluj" 
       },{ 
         id: null,
-        firstName: "Firstname2",
-        lastName: "Lastname2",
-        isAdmin: false,
+        firstName: "Admin",
+        lastName: "Banned",
+        isAdmin: true,
+        isBanned: true,
+        phone: "0757665889",
+        organization: "OrganizationX",
+        region: "Cluj" 
+      },{ 
+        id: null,
+        firstName: "Admin",
+        lastName: "NonBanned",
+        isAdmin: true,
+        isBanned: false,
         phone: "0757665889",
         organization: "OrganizationX",
         region: "Cluj" 
