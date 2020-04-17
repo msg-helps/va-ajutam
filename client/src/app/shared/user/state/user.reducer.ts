@@ -62,6 +62,44 @@ export function userReducer(state = initialState, action: UserActionUnion): User
         }
       };
     }
+    case UserActionTypes.MarkUserAsBanned: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case UserActionTypes.MarkUserAsBannedSuccess: {
+      return {
+        ...state,
+        loading: false,
+        data: action.payload
+      };
+    }
+    case UserActionTypes.MarkUserAsBannedFailure: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+    case UserActionTypes.MarkUserAsNotBanned: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case UserActionTypes.MarkUserAsNotBannedSuccess: {
+      return {
+        ...state,
+        loading: false,
+        data: action.payload
+      };
+    }
+    case UserActionTypes.MarkUserAsNotBannedFailure: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
     default: {
       return state;
     }

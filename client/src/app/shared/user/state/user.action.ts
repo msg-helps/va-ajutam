@@ -1,10 +1,17 @@
 import User from '../../model/user.model';
+import { Action } from '@ngrx/store';
 
 export enum UserActionTypes {
   LoadUser = '[User] Load',
   LoadUserSuccess = '[User] Load Success',
   LoadUserFailure = '[User] Load Failure',
-  ResetUser = '[User] Reset'
+  ResetUser = '[User] Reset',
+  MarkUserAsBanned = '[User] Mark User as banned',
+  MarkUserAsBannedSuccess = '[User] Mark User as banned Success',
+  MarkUserAsBannedFailure = '[User] Mark User as banned Failure',
+  MarkUserAsNotBanned = '[User] Mark User as not banned',
+  MarkUserAsNotBannedSuccess = '[User] Mark User as not banned Success',
+  MarkUserAsNotBannedFailure = '[User] Mark User as not banned Failure',
 }
 
 export class LoadUser {
@@ -25,4 +32,51 @@ export class ResetUser {
   readonly type = UserActionTypes.ResetUser;
 }
 
-export type UserActionUnion = LoadUser | ResetUser | LoadUserSuccess | LoadUserFailure;
+export class MarkUserAsBanned implements Action {
+  readonly type = UserActionTypes.MarkUserAsBanned;
+
+  constructor(public payload: string) {
+  }
+}
+
+export class MarkUserAsBannedSuccess implements Action {
+  readonly type = UserActionTypes.MarkUserAsBannedSuccess;
+
+  constructor(public payload: User) {}
+}
+
+export class MarkUserAsBannedFailure implements Action {
+  readonly type = UserActionTypes.MarkUserAsBannedFailure;
+}
+
+export class MarkUserAsNotBanned implements Action {
+  readonly type = UserActionTypes.MarkUserAsNotBanned;
+
+  constructor(public payload: string) {
+  }
+}
+
+export class MarkUserAsNotBannedSuccess implements Action {
+  readonly type = UserActionTypes.MarkUserAsNotBannedSuccess;
+
+  constructor(public payload: User) {}
+}
+
+export class MarkUserAsNotBannedFailure implements Action {
+  readonly type = UserActionTypes.MarkUserAsNotBannedFailure;
+}
+
+
+
+export type UserActionUnion = 
+  LoadUser 
+| ResetUser
+| LoadUserSuccess
+| LoadUserFailure
+| MarkUserAsBanned
+| MarkUserAsBannedSuccess
+| MarkUserAsBannedFailure
+| MarkUserAsNotBanned
+| MarkUserAsNotBannedSuccess
+| MarkUserAsNotBannedFailure
+;

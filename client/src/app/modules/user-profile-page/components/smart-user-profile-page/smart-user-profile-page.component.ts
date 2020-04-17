@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import User from '../../../../shared/model/user.model';
-import {LoadUser} from '../../../../shared/user/state/user.action';
+import {LoadUser, MarkUserAsBanned, MarkUserAsNotBanned} from '../../../../shared/user/state/user.action';
 import {selectUserState} from '../../../../shared/user/state/user.reducer';
 import {FormControl, FormGroup} from '@angular/forms';
 import State from '../../../../shared/state/state';
@@ -15,11 +15,10 @@ import State from '../../../../shared/state/state';
     </app-user-profile-page>
     <br>
     <app-user-profile-action
-      [isAdmin]="isAdmin"
-      [isBanned]="isBanned"
-      (banUser)="banUser()"
-      (unbanUser)="unbanUser()"
-      (deleteUser)="deleteUser()">
+      [user]="user$ | async"
+      (banUser)="banUser($event)"
+      (unbanUser)="unbanUser($event)"
+      (deleteUser)="deleteUser($event)">
     </app-user-profile-action>
     <span *ngIf="isLoading$ | async" class="alert alert-info mt-5">Loading user...</span>
     <span *ngIf="hasError$ | async" class="alert alert-danger mt-5">Could not load user...</span>`,
@@ -37,8 +36,6 @@ export class SmartUserProfilePageComponent implements OnInit {
     organization: new FormControl(),
     region: new FormControl()
   });
-  isBanned: boolean;
-  isAdmin: boolean;
 
   constructor(private store: Store<State>) {
   }
@@ -57,8 +54,6 @@ export class SmartUserProfilePageComponent implements OnInit {
             organization: user.organization,
             region: user.region
           });
-        this.isBanned = user.isBanned;
-        this.isAdmin = user.isAdmin 
       })
   }
 
@@ -66,15 +61,19 @@ export class SmartUserProfilePageComponent implements OnInit {
     this.store.dispatch(new LoadUser());
   }
 
-  banUser(){
-    alert('BAN! ' + this.userGroup.get('firstName').value);
+  banUser(id: string){
+    //alert('BAN! ' + this.userGroup.get('firstName').value);
+    console.log(id);
+    this.store.dispatch(new MarkUserAsBanned(id));
   }
 
-  unbanUser(){
-    alert('UNBAN! ' + this.userGroup.get('firstName').value);
+  unbanUser(id: string){
+    //alert('UNBAN! ' + this.userGroup.get('firstName').value);
+    console.log(id);
+    this.store.dispatch(new MarkUserAsNotBanned(id));
   }
 
-  deleteUser(){
+  deleteUser(id: string){
     alert('DELETE! ' + this.userGroup.get('firstName').value);
   }
 
