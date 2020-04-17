@@ -100,6 +100,25 @@ export function userReducer(state = initialState, action: UserActionUnion): User
         loading: false,
       };
     }
+    case UserActionTypes.UpdateUser: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case UserActionTypes.UpdateUserSuccess: {
+      return {
+        ...state,
+        loading: false,
+        data: action.payload
+      };
+    }
+    case UserActionTypes.UpdateUserFailure: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
     default: {
       return state;
     }

@@ -12,6 +12,9 @@ export enum UserActionTypes {
   MarkUserAsNotBanned = '[User] Mark User as not banned',
   MarkUserAsNotBannedSuccess = '[User] Mark User as not banned Success',
   MarkUserAsNotBannedFailure = '[User] Mark User as not banned Failure',
+  UpdateUser = '[User] Update User',
+  UpdateUserSuccess = '[User] User Update Success',
+  UpdateUserFailure = '[User] User Update Failure'
 }
 
 export class LoadUser {
@@ -66,7 +69,22 @@ export class MarkUserAsNotBannedFailure implements Action {
   readonly type = UserActionTypes.MarkUserAsNotBannedFailure;
 }
 
+export class UpdateUser implements Action {
+  readonly type = UserActionTypes.UpdateUser;
 
+  constructor(public payload: User) {
+  }
+}
+
+export class UpdateUserSuccess implements Action {
+  readonly type = UserActionTypes.UpdateUserSuccess;
+
+  constructor(public payload: User) {}
+}
+
+export class UpdateUserFailure implements Action {
+  readonly type = UserActionTypes.UpdateUserFailure;
+}
 
 export type UserActionUnion = 
   LoadUser 
@@ -79,4 +97,7 @@ export type UserActionUnion =
 | MarkUserAsNotBanned
 | MarkUserAsNotBannedSuccess
 | MarkUserAsNotBannedFailure
+| UpdateUser
+| UpdateUserSuccess
+| UpdateUserFailure
 ;

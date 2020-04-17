@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import User from 'src/app/shared/model/user.model';
 
 @Component({
   selector: 'app-user-profile-page',
@@ -38,11 +39,17 @@ import {FormGroup} from '@angular/forms';
                           formControlName="region">
               </div>
           </form>
+      </div>
+      <div>
+        <div class="col-md-6 col-lg-6 well">
+            <button class="btn btn-primary" type="button" (click)="updateUser.emit(userGroup)">Update User Data</button>
+        </div>
       </div>`,
   styleUrls: ['user-profile-page.component.scss']
 })
 export class UserProfilePageComponent {
 
   @Input() userGroup: FormGroup;
+  @Output() updateUser = new EventEmitter<FormGroup>();
 
 }

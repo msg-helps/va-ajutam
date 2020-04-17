@@ -13,7 +13,10 @@ import { LoadUser,
   MarkUserAsBannedFailure,
   MarkUserAsNotBanned,
   MarkUserAsNotBannedSuccess,
-  MarkUserAsNotBannedFailure
+  MarkUserAsNotBannedFailure,
+  UpdateUser,
+  UpdateUserSuccess,
+  UpdateUserFailure
 } from './user.action';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
@@ -59,6 +62,22 @@ export class UserEffects {
   @Effect({dispatch: false})
   public markUserAsNotBannedSuccess$ = this.actions$.pipe(
     ofType<MarkUserAsNotBannedSuccess>(UserActionTypes.MarkUserAsNotBannedSuccess),
+    tap(() => this.router.navigateByUrl('/user'))
+  );
+
+  @Effect()
+  public updateUser$ = this.actions$.pipe(
+    ofType<UpdateUser>(UserActionTypes.UpdateUser),
+    map(action => action.payload),
+    switchMap(user => this.userService.updateUser(user).pipe(
+      map(user => new UpdateUserSuccess(user)),
+      catchError(() => of(new UpdateUserFailure()))
+    ))
+  );
+
+  @Effect({dispatch: false})
+  public updateUserSuccess$ = this.actions$.pipe(
+    ofType<UpdateUserSuccess>(UserActionTypes.UpdateUserSuccess),
     tap(() => this.router.navigateByUrl('/user'))
   );
 

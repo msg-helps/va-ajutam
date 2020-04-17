@@ -59,15 +59,17 @@ export class UserService {
 
   markUserAsBanned(id:string): Observable<User>{  
     let user: User = this.users.filter(x => x.id === id)[0];
-    console.log(user.id);
     user.isBanned = true;
     return of(Object.assign({}, user)).pipe(delay(500));
   }
 
   markUserAsNotBanned(id:string): Observable<User>{  
     let user: User = this.users.filter(x => x.id === id)[0];
-    console.log(user.id);
     user.isBanned = false;
+    return of(Object.assign({}, user)).pipe(delay(500));
+  }
+
+  updateUser(user: User): Observable<User>{  
     return of(Object.assign({}, user)).pipe(delay(500));
   }
 

@@ -1,25 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import User from '../../../../shared/model/user.model';
-import {LoadUser, MarkUserAsBanned, MarkUserAsNotBanned} from '../../../../shared/user/state/user.action';
+import {LoadUser, MarkUserAsBanned, MarkUserAsNotBanned, UpdateUser} from '../../../../shared/user/state/user.action';
 import {selectUserState} from '../../../../shared/user/state/user.reducer';
 import {FormControl, FormGroup} from '@angular/forms';
 import State from '../../../../shared/state/state';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-smart-user-profile-page',
   template: `
     <app-user-profile-page
-      [userGroup]="userGroup">
+      [userGroup]="userGroup"
+      (updateUser)="updateUser($event)">
     </app-user-profile-page>
     <br>
-    <app-user-profile-action
+    <app-user-profile-admin-action
       [user]="user$ | async"
       (banUser)="banUser($event)"
-      (unbanUser)="unbanUser($event)"
-      (deleteUser)="deleteUser($event)">
-    </app-user-profile-action>
+      (unbanUser)="unbanUser($event)">
+    </app-user-profile-admin-action>
     <span *ngIf="isLoading$ | async" class="alert alert-info mt-5">Loading user...</span>
     <span *ngIf="hasError$ | async" class="alert alert-danger mt-5">Could not load user...</span>`,
   styleUrls: ['./smart-user-profile-page.scss']
@@ -28,7 +29,6 @@ export class SmartUserProfilePageComponent implements OnInit {
   user$: Observable<User>;
   hasError$: Observable<boolean>;
   isLoading$: Observable<boolean>;
-
   userGroup = new FormGroup({
     firstName: new FormControl(),
     lastName: new FormControl(),
@@ -36,8 +36,11 @@ export class SmartUserProfilePageComponent implements OnInit {
     organization: new FormControl(),
     region: new FormControl()
   });
+  private user: User;
 
   constructor(private store: Store<State>) {
+    this.userGroup.controls['firstName'].disable();
+    this.userGroup.controls['lastName'].disable();
   }
 
   ngOnInit(): void {
@@ -54,6 +57,7 @@ export class SmartUserProfilePageComponent implements OnInit {
             organization: user.organization,
             region: user.region
           });
+        this.user = user;
       })
   }
 
@@ -62,19 +66,19 @@ export class SmartUserProfilePageComponent implements OnInit {
   }
 
   banUser(id: string){
-    //alert('BAN! ' + this.userGroup.get('firstName').value);
-    console.log(id);
     this.store.dispatch(new MarkUserAsBanned(id));
   }
 
   unbanUser(id: string){
-    //alert('UNBAN! ' + this.userGroup.get('firstName').value);
-    console.log(id);
     this.store.dispatch(new MarkUserAsNotBanned(id));
   }
 
-  deleteUser(id: string){
-    alert('DELETE! ' + this.userGroup.get('firstName').value);
+  updateUser(userForm: FormGroup){
+    let user = Object.assign({}, this.user);
+    user.organization = userForm.get("organization").value;
+    user.phone = userForm.get("phone").value;
+    user.region = userForm.get("region").value;
+    this.store.dispatch(new UpdateUser(user));
   }
 
 }
