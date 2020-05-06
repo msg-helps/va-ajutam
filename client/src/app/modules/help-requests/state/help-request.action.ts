@@ -17,6 +17,9 @@ export enum HelpRequestActionTypes {
   LoadOffersSuccess = '[RequestOfferList] Load Offers Success',
   LoadRequestOfferFailure = '[RequestOfferList] Load Request Offer Failure',
   ChangeListType = '[RequestOfferList] Change List Type',
+  MarkHelpRequestAsDone = '[Help Request] Mark as Done',
+  MarkHelpRequestAsDoneSuccess = '[Help Request] Mark as Done Success',
+  MarkHelpRequestAsDoneFailure = '[Help Request] Mark as Done Failure',
   LoadHelpRequestMessages = '[ Help Request ] Load Messages',
   LoadHelpRequestMessagesSuccess = '[ Help Request ] Load Messages Success',
   LoadHelpRequestMessagesFailure = '[ Help Request ] Load Messages Failure',
@@ -31,7 +34,7 @@ export enum HelpRequestActionTypes {
 export class LoadHelpRequest implements Action {
   readonly type = HelpRequestActionTypes.LoadHelpRequest;
 
-  constructor(public payload: { id: string; }) {
+  constructor(public payload: string) {
   }
 }
 
@@ -96,6 +99,21 @@ export class ChangeListType implements Action {
 
 export class LoadRequestOfferFailure implements Action {
   readonly type = HelpRequestActionTypes.LoadRequestOfferFailure;
+}
+
+export class MarkHelpRequestAsDone implements Action {
+  readonly type = HelpRequestActionTypes.MarkHelpRequestAsDone;
+
+  constructor(public payload: string) {
+  }
+}
+
+export class MarkHelpRequestAsDoneSuccess implements Action {
+  readonly type = HelpRequestActionTypes.MarkHelpRequestAsDoneSuccess;
+}
+
+export class MarkHelpRequestAsDoneFailure implements Action {
+  readonly type = HelpRequestActionTypes.MarkHelpRequestAsDoneSuccess;
 }
 
 export class LoadHelpRequestMessages implements Action {
@@ -166,4 +184,7 @@ export type HelpRequestActionUnion = LoadHelpRequest
   | ChangeListType
   | LoadHelpRequestMessages
   | LoadHelpRequestMessagesFailure
-  | LoadHelpRequestMessagesSuccess;
+  | LoadHelpRequestMessagesSuccess
+  | MarkHelpRequestAsDone
+  | MarkHelpRequestAsDoneSuccess
+  | MarkHelpRequestAsDoneFailure;

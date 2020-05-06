@@ -13,6 +13,9 @@ import {
   HelpRequestActionTypes,
   LoadHelpRequest,
   LoadHelpRequestFailure,
+  MarkHelpRequestAsDone,
+  MarkHelpRequestAsDoneFailure,
+  MarkHelpRequestAsDoneSuccess,
   LoadHelpRequestMessages,
   LoadHelpRequestMessagesFailure,
   LoadHelpRequestMessagesSuccess,
@@ -30,6 +33,7 @@ import {
   ShortPollHelpRequestMessagesSuccess
 } from './help-request.action';
 import {selectHelpRequestState} from './help-request.reducer';
+import {of} from 'rxjs';
 
 @Injectable()
 export class HelpRequestEffects {
@@ -92,6 +96,23 @@ export class HelpRequestEffects {
     map(action => action.payload),
     map(listType => listType === ListType.OFFERS ? new LoadOffers() : new LoadRequests())
   );
+
+  @Effect()
+  public markHelpRequestAsDone$ = this.actions$.pipe(
+    ofType<MarkHelpRequestAsDone>(HelpRequestActionTypes.MarkHelpRequestAsDone),
+    map(action => action.payload),
+    switchMap(id => this.service.markHelpRequestAsDone(id).pipe(
+      map(() => new MarkHelpRequestAsDoneSuccess()),
+      catchError(() => of(new MarkHelpRequestAsDoneFailure()))
+    ))
+  );
+
+  @Effect({dispatch: false})
+  public markHelpRequestAsDoneSuccess$ = this.actions$.pipe(
+    ofType<MarkHelpRequestAsDoneSuccess>(HelpRequestActionTypes.MarkHelpRequestAsDoneSuccess),
+    tap(() => this.router.navigateByUrl('/help-requests'))
+  );
+
 
   @Effect()
   public loadHelpRequestMessages$ = this.actions$.pipe(

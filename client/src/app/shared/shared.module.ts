@@ -5,7 +5,8 @@ import {RouterModule} from '@angular/router';
 import {InfoCardTextComponent} from './components/info-card/info-card-text/info-card-text.component';
 import {InfoCardComponent} from './components/info-card/info-card.component';
 import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
-import {NavbarComponent} from './components/navbar/navbar-component';
+import {UserService} from './user/user.service';
+import { NavbarComponent } from './components/navbar/navbar-component';
 import {UserCommentComponent} from './components/user-comments/user-comment/user-comment.component';
 import {UserCommentsComponent} from './components/user-comments/user-comments.component';
 
@@ -23,6 +24,9 @@ import {UserCommentsComponent} from './components/user-comments/user-comments.co
     CommonModule,
     HttpClientModule,
     RouterModule
+  ],
+  providers: [
+    UserService
   ],
   exports: [
     InfoCardComponent,

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import HelpRequest from '../../../../../shared/model/help-request.model';
 
 @Component({
