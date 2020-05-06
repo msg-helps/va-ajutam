@@ -47,7 +47,7 @@ export class SmartHelpRequestDetailComponent implements OnInit {
     this.mapsVisible$ = this.store.select(selectHelpRequestState).pipe(select(state => !state.coords.loading));
     this.currentUser$ = this.store.select(selectUserState).pipe(select(state => state.data));
     this.route.params.subscribe(param => {
-      this.store.dispatch(new LoadHelpRequest(param.id));
+      this.store.dispatch(new LoadHelpRequest({ id: param.id }));
     });
   }
 

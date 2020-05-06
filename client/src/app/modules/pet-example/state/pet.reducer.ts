@@ -1,4 +1,4 @@
-import State from "../../../shared/state/state";
+import State from '../../../shared/state/state';
 import Pet from '../pet.model';
 import {PetActionTypes, PetActionUnion} from './pet.action';
 

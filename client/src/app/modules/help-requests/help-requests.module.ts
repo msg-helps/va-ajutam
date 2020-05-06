@@ -1,6 +1,7 @@
 import {AgmCoreModule} from '@agm/core';
 import {CommonModule} from '@angular/common';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
 import {environment} from '../../../environments/environment';
@@ -20,6 +21,9 @@ import {RequestListItemComponent} from './components/presentational/request-list
 import {RequestOfferListContentComponent} from './components/presentational/request-offer-list-content/request-offer-list-content.component';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 import {SmartHelpRequestDetailActionBarComponent} from './components/smart/smart-help-request-detail-action-bar/smart-help-request-detail-action-bar.component';
+import { HelpRequestCommentsPageComponent } from './components/page/help-request-comments-page/help-request-comments-page.component';
+import { SmartHelpRequestCommentsComponent } from './components/smart/smart-help-request-comments/smart-help-request-comments.component';
+import { CommentTextFieldComponent } from './components/presentational/comment-text-field/comment-text-field.component';
 
 
 @NgModule({
@@ -33,6 +37,9 @@ import {SmartHelpRequestDetailActionBarComponent} from './components/smart/smart
     RequestOfferListHeaderComponent,
     RequestListItemComponent,
     RequestOfferListContentComponent,
+    HelpRequestCommentsPageComponent,
+    SmartHelpRequestCommentsComponent,
+    CommentTextFieldComponent,
     SmartHelpRequestDetailActionBarComponent
   ],
   imports: [
@@ -44,7 +51,8 @@ import {SmartHelpRequestDetailActionBarComponent} from './components/smart/smart
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey
     }),
-    NgbDropdownModule
+    NgbDropdownModule,
+    ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
