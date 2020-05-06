@@ -11,6 +11,9 @@ import Pet from '../../../pet.model';
         Name: {{ pet.name }} <br />
         Breed: {{ pet.breed }}
       </p>
+      <p [innerHTML]="pet">
+
+      </p>
 
       <button class="btn btn-primary" (click)="loadPet.emit()">Load Another</button>
     </div>

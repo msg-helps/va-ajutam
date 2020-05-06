@@ -3,6 +3,10 @@ import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () => import('./modules/landing-page/landing-page.module').then(module => module.LandingPageModule)
+  },
+  {
     path: 'pets',
     loadChildren: './modules/pet-example/pet.module#PetModule'
   },
@@ -13,7 +17,7 @@ const routes: Routes = [
   {
     path: 'help-requests',
     loadChildren: () => import('./modules/help-requests/help-requests.module').then(m => m.HelpRequestsModule)
-  },
+  }
 ];
 
 @NgModule({

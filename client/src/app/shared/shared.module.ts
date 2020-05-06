@@ -10,7 +10,6 @@ import { NavbarComponent } from './components/navbar/navbar-component';
 import {UserCommentComponent} from './components/user-comments/user-comment/user-comment.component';
 import {UserCommentsComponent} from './components/user-comments/user-comments.component';
 
-
 @NgModule({
   declarations: [
     InfoCardComponent,
@@ -29,6 +28,7 @@ import {UserCommentsComponent} from './components/user-comments/user-comments.co
     UserService
   ],
   exports: [
+    CommonModule,
     InfoCardComponent,
     InfoCardTextComponent,
     LoadingSpinnerComponent,

@@ -32,8 +32,8 @@ import {UserEffects} from './shared/user/state/user.effect';
     !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
   ],
   providers: [],
-  exports: [
-  ],
+  exports: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
