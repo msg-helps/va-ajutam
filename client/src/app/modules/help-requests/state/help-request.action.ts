@@ -34,7 +34,7 @@ export enum HelpRequestActionTypes {
 export class LoadHelpRequest implements Action {
   readonly type = HelpRequestActionTypes.LoadHelpRequest;
 
-  constructor(public payload: string) {
+  constructor(public payload: { id: string }) {
   }
 }
 

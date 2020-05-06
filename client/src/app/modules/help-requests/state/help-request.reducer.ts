@@ -1,6 +1,6 @@
 import HelpOffer from '../../../shared/model/help-offer.model';
 import HelpRequest from '../../../shared/model/help-request.model';
-import Message from "../../../shared/model/message.model";
+import Message from '../../../shared/model/message.model';
 import State from '../../../shared/state/state';
 import {ListType} from '../help-requests.model';
 import {HelpRequestActionTypes, HelpRequestActionUnion} from './help-request.action';

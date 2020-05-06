@@ -8,7 +8,7 @@ import HelpRequest from '../../shared/model/help-request.model';
 import {HelpCategory, HelpStatus} from '../../shared/model/help.model';
 import Message from '../../shared/model/message.model';
 import User from '../../shared/model/user.model';
-import {MessageInputDto} from "./help-requests.model";
+import {MessageInputDto} from './help-requests.model';
 
 @Injectable({
   providedIn: 'root'

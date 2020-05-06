@@ -15,7 +15,7 @@ import HelpRequest from '../../../../../shared/model/help-request.model';
                           pers.</span>
                       <span class="badge badge-pill badge-success ml-1">Status: {{item.status}}</span>
                       <p class="card-text">{{item.description}}</p>
-                      <a class="btn btn-primary" routerLink="./{{item.id}}">Read more</a>
+                      <a class="btn btn-primary" [routerLink]="'./' + item.id">Read more</a>
                   </div>
               </div>
           </div>
