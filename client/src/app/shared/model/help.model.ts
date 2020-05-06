@@ -24,4 +24,3 @@ export default interface BaseHelp {
   title: string;
   messages: Message[];
 }
-
