@@ -12,7 +12,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PetModule} from './modules/pet-example/pet.module';
 import {reducers} from './shared/state/state';
+import {LoginModule} from './modules/login/login.module';
 import {SharedModule} from './shared/shared.module';
+import {AuthService} from './shared/auth.service';
 import {UserEffects} from './shared/user/state/user.effect';
 
 @NgModule({
@@ -26,14 +28,16 @@ import {UserEffects} from './shared/user/state/user.effect';
     BrowserAnimationsModule,
     AppRoutingModule,
     PetModule,
+    LoginModule,
     SharedModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([UserEffects]),
     !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
   ],
-  providers: [],
-  exports: [
+  providers: [
+    AuthService
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
