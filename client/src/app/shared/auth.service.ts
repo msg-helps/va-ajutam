@@ -1,15 +1,22 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Auth, Hub} from 'aws-amplify';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {distinctUntilChanged, filter, map, tap} from 'rxjs/operators';
+import {isEqual} from 'lodash';
+import * as AWS from 'aws-sdk';
 import {Credentials, LoginProvider} from './model/login.model';
 import {LoginSuccess} from '../modules/login/state/login.actions';
-import {distinctUntilChanged, filter, map} from 'rxjs/operators';
-import {isEqual} from 'lodash';
+
+interface AuthServiceState {
+  aws: typeof AWS;
+  credentials: Credentials;
+}
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
   private auth$: BehaviorSubject<Credentials> = new BehaviorSubject(null);
+  private state$: Observable<AuthServiceState>;
 
   constructor(private store: Store) {
     this.checkForCredentials().catch(console.error);
@@ -18,15 +25,24 @@ export class AuthService {
         this.checkForCredentials().catch(console.error);
       }
     });
-    this.auth$.asObservable().pipe(
+    this.state$ = this.auth$.asObservable().pipe(
       filter(credentials => !!(credentials && credentials.user)),
-      map(credentials => credentials.user),
       distinctUntilChanged(isEqual),
-    ).subscribe(user => this.store.dispatch(new LoginSuccess(user)));
+      tap(credentials => this.store.dispatch(new LoginSuccess(credentials.user))),
+      map(credentials => ({aws: AWS, credentials}))
+    );
   }
 
   async doLogin(provider: LoginProvider): Promise<void> {
     await Auth.federatedSignIn({provider: provider as any});
+  }
+
+  getState(): Observable<AuthServiceState> {
+    return this.state$;
+  }
+
+  getCredentials(): Observable<Credentials> {
+    return this.auth$.asObservable().pipe(filter(credentials => !!(credentials && credentials.user)));
   }
 
   private async checkForCredentials(): Promise<void> {
@@ -34,6 +50,10 @@ export class AuthService {
       const aws = await Auth.currentCredentials();
       const session = await Auth.currentSession();
       const info = await Auth.currentUserInfo();
+      if (aws.authenticated) {
+        AWS.config.region = 'eu-central-1';
+        AWS.config.credentials = aws;
+      }
       this.auth$.next({
         aws: aws.authenticated ? aws : null,
         oauth: {

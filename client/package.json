@@ -28,6 +28,7 @@
     "@ngrx/store": "^9.0.0",
     "@ngrx/store-devtools": "^9.0.0",
     "aws-amplify": "^3.0.5",
+    "aws-sdk": "^2.668.0",
     "bootstrap": "^4.4.1",
     "lodash": "^4.17.15",
     "rxjs": "~6.5.4",
