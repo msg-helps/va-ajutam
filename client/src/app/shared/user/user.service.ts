@@ -1,47 +1,31 @@
+import {DynamoDB} from 'aws-sdk';
 import {Injectable} from '@angular/core';
-import User from '../model/user.model';
-import {Observable, of} from 'rxjs';
-import {delay} from 'rxjs/operators';
+import User from '../../shared/model/user.model';
+import {Observable, from} from 'rxjs';
+import {AuthService} from '../auth.service';
+import {flatMap, map} from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
-  // Get User data - connection to svr
   getUser(): Observable<User> {
-    const users: User[] = [
-      {
-        id: 'some-uuid-3',
-        firstName: 'Firstname',
-        lastName: 'Lastname',
-        isAdmin: false,
-        phone: '0757665889',
-        organization: 'OrganizationX',
-        region: 'Cluj'
-      }, {
-        id: 'some-uuid-2',
-        firstName: 'Firstname1',
-        lastName: 'Lastname1',
-        isAdmin: false,
-        phone: '0757665889',
-        organization: 'OrganizationX',
-        region: 'Cluj'
-      }, {
-        id: 'some-uuid-1',
-        firstName: 'Firstname2',
-        lastName: 'Lastname2',
-        isAdmin: false,
-        phone: '0757665889',
-        organization: 'OrganizationX',
-        region: 'Cluj'
-      }];
+    return this.authService.getState().pipe(
+      flatMap(({aws, credentials}) => this.readUserFromServer(new aws.DynamoDB.DocumentClient(), credentials.user.id)
+        .then(user => user || credentials.user))
+    );
+  }
 
-
-    const random = 0;
-
-    return of(users[random]).pipe(delay(200));
+  private async readUserFromServer(dc: DynamoDB.DocumentClient, id: string): Promise<User> {
+    const response = await dc.get({
+      TableName: 'va-ajutam-dev-users',
+      Key: {
+        id
+      }
+    }).promise();
+    return response.Item as User;
   }
 
 }

@@ -35,8 +35,7 @@ import {UserCommentsComponent} from './components/user-comments/user-comments.co
     NavbarComponent,
     UserCommentComponent,
     UserCommentsComponent
-  ],
-  providers: []
+  ]
 })
 export class SharedModule {
 }
