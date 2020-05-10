@@ -10,7 +10,6 @@ import {StateWithHelpRequest} from '../../../state/help-request.reducer';
           <app-smart-request-offer-list></app-smart-request-offer-list>
       </div>
   `,
-  styleUrls: ['./request-offer-list-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RequestOfferListPageComponent implements OnInit {

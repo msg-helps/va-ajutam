@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 import User from '../../../../shared/model/user.model';
-import { LoadUser } from '../../../user-profile-page/state/user.action';
-import { selectUserState, StateWithUser } from '../../../user-profile-page/state/user.reducer';
-import { FormGroup, FormControl } from '@angular/forms';
+import {LoadUser} from '../../../../shared/user/state/user.action';
+import {selectUserState} from '../../../../shared/user/state/user.reducer';
+import {FormControl, FormGroup} from '@angular/forms';
+import State from '../../../../shared/state/state';
 
 @Component({
-  selector: 'smart-user-profile-page',
+  selector: 'app-smart-user-profile-page',
   template: `
-    <app-user-profile-page
-      [userGroup]="userGroup"></app-user-profile-page>
-    <br>
-    <span *ngIf="isLoading$ | async" class="alert alert-info mt-5">Loading user...</span>
-    <span *ngIf="hasError$ | async" class="alert alert-danger mt-5">Could not load user...</span>`,
+      <app-user-profile-page
+              [userGroup]="userGroup"></app-user-profile-page>
+      <br>
+      <span *ngIf="isLoading$ | async" class="alert alert-info mt-5">Loading user...</span>
+      <span *ngIf="hasError$ | async" class="alert alert-danger mt-5">Could not load user...</span>`,
   styleUrls: ['./smart-user-profile-page.scss']
 })
 export class SmartUserProfilePageComponent implements OnInit {
@@ -27,9 +28,10 @@ export class SmartUserProfilePageComponent implements OnInit {
     phone: new FormControl(),
     organization: new FormControl(),
     region: new FormControl()
-  })
+  });
 
-  constructor(private store: Store<StateWithUser>) { }
+  constructor(private store: Store<State>) {
+  }
 
   ngOnInit(): void {
 
@@ -37,16 +39,17 @@ export class SmartUserProfilePageComponent implements OnInit {
     this.hasError$ = this.store.select(selectUserState).pipe(select(userState => userState.error));
     this.isLoading$ = this.store.select(selectUserState).pipe(select(userState => userState.loading));
 
-    this.user$.subscribe( user => this.userGroup.patchValue(
-      { firstName: user.firstName,
+    this.user$.subscribe(user => this.userGroup.patchValue(
+      {
+        firstName: user.firstName,
         lastName: user.lastName,
         phone: user.phone,
         organization: user.organization,
         region: user.region
-      }) )
+      }));
   }
 
-  loadAnotherUser(){
+  loadAnotherUser() {
     this.store.dispatch(new LoadUser());
   }
 

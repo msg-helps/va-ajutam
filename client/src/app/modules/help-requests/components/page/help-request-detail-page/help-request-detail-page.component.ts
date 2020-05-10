@@ -1,11 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-help-request-detail-page',
   template: `
     <div class="container">
-      <button class="btn btn-sm btn-outline-primary my-3" [routerLink]="'../'">BACK PH</button>
-
+        <div class="row mt-2 mb-1">
+          <div class="col-6">
+          <button class="btn btn-sm btn-link" [routerLink]="'../'">Inapoi</button>
+        </div>
+          <div class="col-6 text-right">
+            <button class="btn btn-sm btn-link" [routerLink]="'./comments'">Vezi Comentarii</button>
+          </div>
+        </div>
       <app-smart-help-request-detail></app-smart-help-request-detail>
     </div>
   `,

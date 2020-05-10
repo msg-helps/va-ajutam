@@ -15,6 +15,7 @@ import {reducers} from './shared/state/state';
 import {LoginModule} from './modules/login/login.module';
 import {SharedModule} from './shared/shared.module';
 import {AuthService} from './shared/auth.service';
+import {UserEffects} from './shared/user/state/user.effect';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {AuthService} from './shared/auth.service';
     LoginModule,
     SharedModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([UserEffects]),
     !environment.production ? StoreDevtoolsModule.instrument({maxAge: 10}) : []
   ],
   providers: [
