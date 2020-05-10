@@ -3,8 +3,7 @@ import User from '../../../shared/model/user.model';
 
 export enum LoginActionTypes {
   Login = '[Login] Login',
-  LoginSuccess = '[Login] Success',
-  LoginError = '[Login] Error'
+  LoginSuccess = '[Login] Success'
 }
 
 export class Login {
@@ -20,8 +19,4 @@ export class LoginSuccess {
   constructor(public payload: User) {}
 }
 
-export class LoginFailure {
-  readonly type = LoginActionTypes.LoginError;
-}
-
-export type LoginActionUnion = Login | LoginSuccess | LoginFailure;
+export type LoginActionUnion = Login | LoginSuccess;

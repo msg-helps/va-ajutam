@@ -35,14 +35,6 @@ export function loginReducer(state = initialState, action: LoginActionUnion): Lo
         data: action.payload
       };
     }
-    case LoginActionTypes.LoginError: {
-      return {
-        ...state,
-        loading: false,
-        error: true,
-        data: null
-      };
-    }
     default: {
       return state;
     }
